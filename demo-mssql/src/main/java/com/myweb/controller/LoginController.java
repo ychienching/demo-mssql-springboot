@@ -24,7 +24,7 @@ public class LoginController {
 	// ModelAttribute使用物件
 	@ModelAttribute("initSetting")
 	public Pojo checkUAC() {
-		System.out.println("LoginController check UAC");
+		System.out.println("LoginController check UAC");// test
 		// TODO UAC
 		Pojo initPojo = new Pojo();
 		initPojo.setPage("login");// 可調整為要使用的html
