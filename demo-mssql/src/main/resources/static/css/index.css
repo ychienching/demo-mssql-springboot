@@ -1,0 +1,37 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.menu {
+    /*background-color: peachpuff;*/
+	/*background-image: url(/static/images/bg-01.jpg);*/
+    height: 100vh;
+    width: 200px;
+    float: left;
+}
+.menu h1{
+	margin: 20px 0;
+}
+
+.menuBtnList{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+    width: 100px;
+}
+.menuBtnList button{
+    width:100px;
+	margin-bottom: 20px;
+}
+
+.content {
+    width: 170vw;
+    height: 100vh;
+    background-color: aquamarine;
+}
+
+#index-data {
+    padding: 5vh 0vw 60vh 20vw;/*上右下左*/
+}

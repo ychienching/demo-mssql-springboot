@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Login V5</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- CSS ===============================================================================================-->
+	<head th:include="common :: css"></head>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}">
+</head>
+
+<body>
+	
+	<div class="menu" th:style="'background-image: url('+ @{/images/bg-01.jpg} +');'">
+		<h1>測試系統</h1>
+		<div class="menuBtnList">
+			<button type="button" class="btn btn-dark" id="indexBtn">首頁</button>
+			<button type="button" class="btn btn-dark" name="menuBtn" data-src="test/go/member">成員管理</button>
+			<button type="button" class="btn btn-dark" name="menuBtn" data-src="test/go/order">Order清單</button>
+			<button type="button" class="btn btn-dark" name="menuBtn" data-src="test/go/test">Test</button>
+		</div>
+	</div>
+	
+	<div class="content">
+
+		<iframe id="iframe-page" frameborder="0" scrolling="yes" src="" width="70%" height="100%"> </iframe>
+		
+		<div id="index-data">
+			公告事項
+		</div>
+		
+	</div>
+	
+<!-- JS ===============================================================================================-->
+	<body th:include="common :: js"></body>
+	<script th:src="@{/js/index.js}"></script>
+
+</body>
+</html>
