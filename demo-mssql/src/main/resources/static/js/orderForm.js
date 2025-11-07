@@ -1,4 +1,4 @@
-var G_MainRoot = location.origin + "/demo-sqlserver/";
+var G_MainRoot = location.origin + "/test-system/";
 
 $(function () {
 	/* 1. Query initial config and setting */

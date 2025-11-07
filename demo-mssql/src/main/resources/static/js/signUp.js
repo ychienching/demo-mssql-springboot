@@ -1,10 +1,10 @@
 
 (function ($) {
-    // var G_MainRoot = "/demo-sqlserver/";
-    var G_MainRoot = location.origin + "/demo-sqlserver/";
+    // var G_MainRoot = "/test-system/";
+    var G_MainRoot = location.origin + "/test-system/";
     $('.spinner-border').hide();
     // var G_MainRoot = location.pathname;
-    // pathname: "/demo-sqlserver/test/index2"
+    // pathname: "/test-system/test/index2"
 
     
     $('#signUpBtn').on('click',function(){ //前端畫面更新方式: save > project build > 畫面重整
