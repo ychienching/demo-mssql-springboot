@@ -7,8 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import com.myweb.model.MyTestModel;
 
+//Long：這是實體類別主鍵的類型。這裡表示 MyTestModel 類的 @Id 欄位是 Long 類型
 @Repository
-public interface MyTestDao extends JpaRepository<MyTestModel, String> {
+public interface MyTestDao extends JpaRepository<MyTestModel, Long> {
 
 	// method name auto mapping table column, can no write implements
 	List<MyTestModel> findByName(String Name);

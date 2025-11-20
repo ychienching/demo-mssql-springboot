@@ -1,880 +1,863 @@
 <!-- cust style -->
 <!-- <link rel="stylesheet" href="./css/home/MASampling_Home.css"> -->
 
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" th:href="@{/images/icons/favicon.ico}"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" th:href="@{/fonts/Linearicons-Free-v1.0.0/icon-font.min.css}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" th:href="@{/vendor/animate/animate.css}">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" th:href="@{/vendor/css-hamburgers/hamburgers.min.css}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" th:href="@{/vendor/animsition/css/animsition.min.css}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" th:href="@{/vendor/select2/select2.min.css}">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" th:href="@{/vendor/daterangepicker/daterangepicker.css}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" th:href="@{/css/util.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" th:href="@{/uiCore/datetimepicker/tempusdominus-bootstrap-4.min.css}">
+<head>
+<!-- CSS ===============================================================================================-->
+	<head th:include="common :: css"></head>
+<!-- Not common ===============================================================================================-->
+ 	<link rel="stylesheet" type="text/css" th:href="@{/css/layout.css}">
+<!-- tempus-dominus-bootstrap -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css" integrity="sha512-3JRrEUwaCkFUBLK1N8HehwQgu8e23jTH4np5NHOmQOobuC4ROQxFwFgBLTnhcnQRMs84muMh0PnnwXlPq5MGjg==" crossorigin="anonymous" />
 <!-- fontawesome Icon -->
-	<link rel="stylesheet" type="text/css" th:href="@{/uiCore/fontawesome-free/css/all.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/uiCore/fontawesome-free-7.1.0-web/css/all.min.css}"> 
+<!-- bootstrap -->
+	<link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
 <!-- boostrapTable -->
-	<link rel="stylesheet" type="text/css" th:href="@{/uiCore/bootstrap-table@1.20.1/dist/bootstrap-table.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/uiCore/bootstrap-table@1.20.1/dist/bootstrap-table.min.css}">
+    <!-- 進階插件 -->
 	<link rel="stylesheet" type="text/css" th:href="@{/uiCore/bootstrap-table@1.20.1/dist/extensions/sticky-header/bootstrap-table-sticky-header.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/uiCore/bootstrap-table@1.20.1/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/uiCore/bootstrap-table@1.20.1/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.css}">
 
-<style>
-	.inputlimitCnt {
-	  font-size: 1rem;
-	  font-weight: 400;
-	  line-height: 1.5;
-	  color: #495057;
-	  background-color: #fff;
-	  background-clip: padding-box;
-	  border: 1px solid #ced4da;
-	  border-radius: .25rem;
-	  box-shadow: inset 0 0 0 transparent;
-	  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-	}
-  
-	.pickedText {
-	  border-width: 0 0 2px 0;
-	  background-color: #fff;
-	  color: black;
-  
-	  display: inline-block;
-	  font-weight: bold;
-	  text-align: center;
-	  vertical-align: middle;
-	  cursor: pointer;
-	  -webkit-user-select: none;
-	  -moz-user-select: none;
-	  -ms-user-select: none;
-	  user-select: none;
-	  background-color: transparent;
-	  border: 1px solid transparent;
-	  padding: .375rem .75rem;
-	  font-size: 1rem;
-	  line-height: 1.5;
-	  border-radius: .25rem;
-	  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-	}
-  
-	.valueText {
-	  display: inline-block;
-	  width: 100%;
-	  font-weight: bold;
-	  text-align: center;
-	  vertical-align: middle;
-	  padding: .375rem .75rem;
-	  border-width: 0 0 2px 0;
-	  border-style: solid;
-	  /* background-color: var(--primary); */
-	  line-height: 1.5;
-	  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-	}
-  
-	[name=batchHoldBtn] {
-	  opacity: 0.7;
-	}
-  
-	#abbrTable tr.selected {
-	  /*  .bg-gradient-primary    268fff*/
-	  background: #007bff linear-gradient(180deg, #268fff, #007bff) repeat-x !important;
-	  color: #fff;
-	}
-  
-	.ehanceValue {
-	  border-color: var(--warning);
-	  border-width: 0 0 0 3px;
-	  border-style: dotted;
-	}
-  </style>
-  <div id="MASampling_Rule_Edit">
+	<style>
+		.inputlimitCnt {
+		font-size: 1rem;
+		font-weight: 400;
+		line-height: 1.5;
+		color: #495057;
+		background-color: #fff;
+		background-clip: padding-box;
+		border: 1px solid #ced4da;
+		border-radius: .25rem;
+		box-shadow: inset 0 0 0 transparent;
+		transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+		}
+	
+		.pickedText {
+		border-width: 0 0 2px 0;
+		background-color: #fff;
+		color: black;
+	
+		display: inline-block;
+		font-weight: bold;
+		text-align: center;
+		vertical-align: middle;
+		cursor: pointer;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		background-color: transparent;
+		border: 1px solid transparent;
+		padding: .375rem .75rem;
+		font-size: 1rem;
+		line-height: 1.5;
+		border-radius: .25rem;
+		transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+		}
+	
+		.valueText {
+		display: inline-block;
+		width: 100%;
+		font-weight: bold;
+		text-align: center;
+		vertical-align: middle;
+		padding: .375rem .75rem;
+		border-width: 0 0 2px 0;
+		border-style: solid;
+		/* background-color: var(--primary); */
+		line-height: 1.5;
+		transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+		}
+	
+		[name=batchHoldBtn] {
+		opacity: 0.7;
+		}
+	
+		#abbrTable tr.selected {
+		/*  .bg-gradient-primary    268fff*/
+		background: #007bff linear-gradient(180deg, #268fff, #007bff) repeat-x !important;
+		color: #fff;
+		}
+	
+		.ehanceValue {
+		border-color: var(--warning);
+		border-width: 0 0 0 3px;
+		border-style: dotted;
+		}
+	</style>
+</head>
+
+<div id="MASampling_Rule_Edit">
 	<div class="row">
-	  <div class="col-2 col-md-3 offset-md-3">
+		<div class="col-2 col-md-3">
 		<button class="btn btn-outline-warning btn-block mb-2 text-right border-0" name="returnEqpBtn"
-		  style="display: none;">
-		  <i class="fas fa-caret-left"></i>&ensp;<span class="text-xs" data-i18n="">EQP</span>
+			style="display: none;">
+			<i class="fas fa-caret-left"></i>&ensp;<span class="text-xs" data-i18n="">EQP</span>
 		</button>
-	  </div>
-	  <!-- <div class="col-md-4 offset-4"> -->
-	  <div class="col-10 col-md-3 ">
+		</div>
+		<!-- <div class="col-md-4 offset-4"> -->
+		<div class="col-10 col-md-3 ">
 		<p class="border-danger text-danger valueText" style="border-style: dashed;" id="newRuleBtn">New Rule</p>
-	  </div>
+		</div>
 	</div>
-	<div class="row">
-	  <!-- Left Top -->
-	  <div class="col-5">
+	<div class="row" id="setting-row">
+		<!-- Left Top -->
+		<div class="col-5">
 		<div class="card">
-		  <div class="card-body">
+			<div class="card-body">
 			<blockquote class="quote-secondary quote-warning">
-			  <cite title="Source Title">車用模式 Lot Start</cite>
-			  <p data-i18n="">
+				<cite title="Source Title">車用模式 Lot Start</cite>
+				<p data-i18n="">
 				- 自動綁BATCH<br>
 				- Logoff當站觸發抽檢<br>
 				- 觸發多規則在同一匣時併發抽檢<br>
 				- 首批與尾批抽檢，並自動HOLD尾批<br>
-			  </p>
-			  <!-- <small>Someone famous in <cite title="Source Title">Source Title</cite></small> -->
+				</p>
+				<!-- <small>Someone famous in <cite title="Source Title">Source Title</cite></small> -->
 			</blockquote>
-		  </div>
+			</div>
 		</div>
 		<!-- Card : Eqp / Logoff OP Trigger OP-->
 		<div class="card">
-		  <div class="card-body">
+			<div class="card-body">
 			<div class="row">
-			  <!---- Model or Abbr  ---->
-			  <div class="col-12">
+				<!---- Model or Abbr  ---->
+				<div class="col-12">
 				<label class="col-form-label" for="inputName" data-i18n="">Model & Abbr&ensp;<i class="fas fa-star-of-life text-danger text-xs"></i>
 				</label>
 				<div class="row">
-				  <div class="col-12 btn-group mb-2">
-					<label class="btn btn-info mb-0 text-nowrap" data-toggle="modal" data-target="#modelAbbrModal"
-					  id="modelAbbrMode">Abbr</label>
-					<button type="button" class="btn btn-info btn-block" data-toggle="modal"
-					  data-target="#modelAbbrModal" id="modelAbbrList">(Optional)</button>
+					<div class="col-12 btn-group mb-2">
+					<label class="btn btn-info mb-0 text-nowrap" data-bs-toggle="modal" data-bs-target="#modelAbbrModal"
+						id="modelAbbrMode">Abbr</label>
+					<button type="button" class="btn btn-info btn-block" data-bs-toggle="modal"
+						data-bs-target="#modelAbbrModal" id="modelAbbrList">(Optional)</button>
 					<label class="btn btn-info mb-0 text-nowrap"><span class="far fa-trash-alt"></span></label>
-				  </div>
+					</div>
 				</div>
-			  </div>
-  
-			  <!---- Logoff OP  ---->
-			  <div class="col-12 mb-2">
+				</div>
+
+				<!---- Logoff OP  ---->
+				<div class="col-12 mb-2">
 				<label class="col-form-label" for="logoffOP">
-				  <span data-i18n="">Logoff OP&ensp;<i class="fas fa-star-of-life text-danger text-xs"></i></span>
+					<span data-i18n="">Logoff OP&ensp;<i class="fas fa-star-of-life text-danger text-xs"></i></span>
 				</label>
 				<div class="btn-group btn-block">
-				  <button type="text" class="btn btn-block btn-info" id="logoffOP">(Optional)</button>
-				  <label class="btn btn-info text-nowrap mb-0"><span class="far fa-trash-alt"></span></label>
+					<button type="text" class="btn btn-block btn-info" id="logoffOP">(Optional)</button>
+					<label class="btn btn-info text-nowrap mb-0"><span class="far fa-trash-alt"></span></label>
 				</div>
 				<div class="col-12">
-				  <small class="form-text text-danger text-right" style="font-size: inherit;">＊請注意依執行順序選擇OP</small>
+					<small class="form-text text-danger text-right" style="font-size: inherit;">＊請注意依執行順序選擇OP</small>
 				</div>
-			  </div>
-  
+				</div>
+
 			</div>
-		  </div>
+			</div>
 		</div>
-  
+
 		<!-- Rules -->
 		<div class="card">
-		  <div class="card-body">
+			<div class="card-body">
 			<div class="row">
-			  
-			  <!---- Sampling OP List  ---->
-			  <div class="col-12">
+				
+				<!---- Sampling OP List  ---->
+				<div class="col-12">
 				<label class="col-form-label" for="inputName" data-i18n="">Sampling OP List
-				  &ensp;<i class="fas fa-star-of-life text-danger text-xs"></i>
+					&ensp;<i class="fas fa-star-of-life text-danger text-xs"></i>
 				</label>
 				<div class="row">
-				  <div class="col-12 btn-group mb-2 sampoplistDiv">
-					<button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#sampOpModal"
-					  name="sampOpList" id="sampOpList_0" onclick="buildSampOpItem($(this));"></button>
-					<button type="button" class="btn btn-success btn-sm mb-0 text-nowrap" data-toggle="modal"
-					  data-target="#sampRouteModal" data-listid="#sampOpList_0"
-					  onclick="querySampRouteFitPanelSize('COUNT', true, this.dataset.listid);">
-					  View Route : <span class="routeCnt">0</span>
+					<div class="col-12 btn-group mb-2 sampoplistDiv">
+					<button type="button" class="btn btn-info btn-block" data-bs-toggle="modal" data-bs-target="#sampOpModal"
+						name="sampOpList" id="sampOpList_0" onclick="buildSampOpItem($(this));"></button>
+					<button type="button" class="btn btn-success btn-sm mb-0 text-nowrap" data-bs-toggle="modal"
+						data-bs-target="#sampRouteModal" data-listid="#sampOpList_0"
+						onclick="querySampRouteFitPanelSize('COUNT', true, this.dataset.listid);">
+						View Route : <span class="routeCnt">0</span>
 					</button>
 					<button type="button" class="btn btn-info" name="sampOpTrash_0" onclick="clearSampOpList(this);">
-					  <span class="far fa-trash-alt"></span></button>
-				  </div>
-				  <div class="col-12 mb-2" id="plusSampOp" style="display:none;">
+						<span class="far fa-trash-alt"></span></button>
+					</div>
+					<div class="col-12 mb-2" id="plusSampOp" style="display:none;">
 					<button type="button" class="btn btn-outline-info"><span class="fas fa-plus"></span></button>
 					<small class="text-danger" style="font-size: inherit;">＊請注意對應 Logoff OP數量與執行順序</small>
-				  </div>
-				  
+					</div>
+					
 				</div>
-			  </div>
-  
-			  
-			  
+				</div>
+
+				
+				
 			</div>
-		  </div>
+			</div>
 		</div>
-  
+
 		<!-- /Left Card -->
-	  </div>
-  
-  
-  
-	  <!-- Right Helf -->
-	  <div class="col-7">
+		</div>
+
+
+
+		<!-- Right Helf -->
+		<div class="col-7">
 		<!-- Sampling op list/ Sampling route-->
 		<div class="card">
-		  <div class="card-body">
+			<div class="card-body">
 			<div class="row">
-  
-			  <!---- 抽匣間隔 ---->
-			  <div class="col-12" id="intervalDiv">
+
+				<!---- 抽匣間隔 ---->
+				<div class="col-12" id="intervalDiv">
 				<label class="col-form-label" for="">
-				  <span data-i18n="">抽匣間隔</span>&ensp;<i class="fas fa-star-of-life text-danger text-xs"></i>
+					<span data-i18n="">抽匣間隔</span>&ensp;<i class="fas fa-star-of-life text-danger text-xs"></i>
 				</label>
 				<div class="row">
-				  <div class="col-12 mb-2" id="intervalInputDiv">
+					<div class="col-12 mb-2" id="intervalInputDiv">
 					<div class="btn-group btn-block">
-					  <label class="btn btn-outline-info text-nowrap mb-0 active">
+						<label class="btn btn-outline-info text-nowrap mb-0 active">
 						<i class="fas fa-check"></i>&ensp;<span data-i18n="">數批</span>
-					  </label>
-					  <input type="text" class="btn btn-outline-info btn-block active" maxlength="100" id="intervalInput">
+						</label>
+						<input type="text" class="btn btn-outline-info btn-block active" maxlength="100" id="intervalInput">
 					</div>
 					<small class="form-text text-muted text-right" id="singleSmall" style="display:none;">請輸入單回數批正整數. 例: 5
 					</small>
 					<small class="form-text text-muted text-right" id="multipleSmall" style="display:none;">請輸入多回數批數列,
-					  用逗號隔開. 例: 5,5,10,14</small>
-				  </div>
+						用逗號隔開. 例: 5,5,10,14</small>
+					</div>
 				</div>
-			  </div>
-			  
+				</div>
+				
 			</div>
-		  </div>
+			</div>
 		</div>
 		<!-- Card : ChanberSampling-->
 		<div class="card">
-		  <div class="card-header">
+			<div class="card-header">
 			<h3 class="card-title">指定抽檢 Sheet 方式? </h3>
 			<div class="card-tools">
-			  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-			  </button>
+				<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+				</button>
 			</div>
-		  </div>
-		  <div class="card-body">
+			</div>
+			<div class="card-body">
 			<div class="row">
-			  <!---- Chamber Type ---->
-			  <div class="col-12">
+				<!---- Chamber Type ---->
+				<div class="col-12">
 				<label class="col-form-label" for="">Chamber Type&ensp;<i class="fas fa-star-of-life text-danger text-xs"></i>
 				</label>
 				<div class="row">
-				  <div class="col-md-4 mb-2">
+					<div class="col-md-4 mb-2">
 					<button type="button" class="btn btn-outline-info btn-block active" name="chTypeBtn" value="">
-					  <i class="fas fa-times"></i> <span data-i18n="">No</span>
+						<i class="fas fa-times"></i> <span data-i18n="">No</span>
 					</button>
-				  </div>
-				  <div class="col-md-4 mb-2">
+					</div>
+					<div class="col-md-4 mb-2">
 					<button type="button" class="btn btn-outline-info btn-block" name="chTypeBtn" value="ASSIGN">
-					  <span data-i18n="">指定 CH</span>
+						<span data-i18n="">指定 CH</span>
 					</button>
-				  </div>
-				  <div class="col-md-4 mb-2">
+					</div>
+					<div class="col-md-4 mb-2">
 					<button type="button" class="btn btn-outline-info btn-block" name="chTypeBtn" value="AVERAGE">
-					  <span data-i18n="">平均分配</span>
+						<span data-i18n="">平均分配</span>
 					</button>
-				  </div>
+					</div>
 				</div>
-			  </div>
-			  <!---- Chamber parameter---->
-			  <div class="col-12" id="chParamDiv">
+				</div>
+				<!---- Chamber parameter---->
+				<div class="col-12" id="chParamDiv">
 				<div class="row">
-				  <div class="col-12 mb-2" id="chQtyDiv" style="display: none;">
+					<div class="col-12 mb-2" id="chQtyDiv" style="display: none;">
 					<div class="btn-group btn-block">
-					  <label class="btn btn-info text-nowrap mb-0" name="" for="chQty">Qty </span></label>
-					  <input type="text" class="btn btn-info form-control " maxlength="3" id="chQty">
+						<label class="btn btn-info text-nowrap mb-0" name="" for="chQty">Qty </span></label>
+						<input type="text" class="btn btn-info form-control " maxlength="3" id="chQty">
 					</div>
 					<small class="form-text text-muted text-right">平均抽幾片</small>
-				  </div>
-				  <div class="col-12 mb-2" id="chIdListDiv" style="display: none;">
+					</div>
+					<div class="col-12 mb-2" id="chIdListDiv" style="display: none;">
 					<div class="btn-group btn-block">
-					  <label class="btn btn-info text-nowrap mb-0" name="" for="chIdList">ID List</span></label>
-					  <input type="text" class="btn btn-info form-control" placeholder="ChID_1,ChID_2,ChID_3"
+						<label class="btn btn-info text-nowrap mb-0" name="" for="chIdList">ID List</span></label>
+						<input type="text" class="btn btn-info form-control" placeholder="ChID_1,ChID_2,ChID_3"
 						id="chIdList">
 					</div>
 					<small class="form-text text-muted text-right">Chamber ID 以逗號隔開. 請注意全半形視為不同字.</small>
-				  </div>
+					</div>
 				</div>
-			  </div>
-			  <!---- Only Process Sheet ---->
-			  <div class="col-12">
+				</div>
+				<!---- Only Process Sheet ---->
+				<div class="col-12">
 				<label class="col-form-label" for=""><span data-i18n="">只抽撿</span> Process Sheet&ensp;<i class="fas fa-star-of-life text-danger text-xs"></i></label>
 				<div class="row">
-				  <div class="col-md-3 mb-2">
+					<div class="col-md-3 mb-2">
 					<button type="button" class="btn btn-outline-info btn-block active" name="onlyProcSheetBtn" value="N">
-					  <i class="fas fa-times"></i> <span data-i18n="">No</span>
+						<i class="fas fa-times"></i> <span data-i18n="">No</span>
 					</button>
-				  </div>
-				  <div class="col-md-3 mb-2">
+					</div>
+					<div class="col-md-3 mb-2">
 					<button type="button" class="btn btn-outline-info btn-block" name="onlyProcSheetBtn" value="Y">
-					  <i class="fas fa-check"></i> <span data-i18n="">Yes</span>
+						<i class="fas fa-check"></i> <span data-i18n="">Yes</span>
 					</button>
-				  </div>
+					</div>
 				</div>
-			  </div>
-			  <!---- 指定 Slot ---->
-			  <div class="col-12">
+				</div>
+				<!---- 指定 Slot ---->
+				<div class="col-12">
 				<label class="col-form-label" for="">
-				  <span data-i18n="">手動指定 Slot</span>&ensp;<i class="fas fa-star-of-life text-danger text-xs"></i>
+					<span data-i18n="">手動指定 Slot</span>&ensp;<i class="fas fa-star-of-life text-danger text-xs"></i>
 				</label>
 				<!---- Default/Choose ---->
 				<div class="row">
-				  <div class="col-md-4 mb-2">
+					<div class="col-md-4 mb-2">
 					<button type="button" class="btn btn-outline-info btn-block active" name="slotValueBtn" value="N">
-					  <span data-i18n="">不手動指定</span>
+						<span data-i18n="">不手動指定</span>
 					</button>
-				  </div>
-				  <div class="col-md-8 mb-2">
+					</div>
+					<div class="col-md-8 mb-2">
 					<div class="input-group">
-					  <div class="btn-group btn-block">
+						<div class="btn-group btn-block">
 						<label class="btn btn-outline-info text-nowrap mb-0" name="slotValueBtn" for="slotValue">
-						  <span data-i18n="">Choose</span>
+							<span data-i18n="">Choose</span>
 						</label>
 						<button type="button" class="btn btn-outline-info btn-block" name="slotValueBtn" id="slotValue"
-						  data-toggle="collapse" data-target="#slotCollapse"></button>
-					  </div>
+							data-bs-toggle="collapse" data-bs-target="#slotCollapse"></button>
+						</div>
 					</div>
-				  </div>
+					</div>
 				</div>
 				<!---- #slotCollapse ---->
 				<div class="collapse" id="slotCollapse">
-				  <div class="row">
+					<div class="row">
 					<div class="col-md-3 offset-md-3 text-center mb-2"><i class="fas fa-angle-double-down"></i>
 					</div>
 					<div class="col-md-6"></div>
-				  </div>
-				  <div class="row">
+					</div>
+					<div class="row">
 					<div class="col-sm-3 col-md-2 text-right">
-					  <div class="">
+						<div class="">
 						<button type="button" class="btn btn-outline-info btn-block" id="slotOK">OK</button>
 						<button type="button" class="btn btn-outline-info btn-block mb-3" id="slotReset">Clear</button>
-					  </div>
+						</div>
 					</div>
 					<!---- slot No. Btn ---->
 					<div class="col-sm-9 col-md-10" id="slotItemDiv">
-					  <div class="mb-1">
+						<div class="mb-1">
 						<button type="button" class="btn btn-outline-info mb-1" name="slotItem">0X</button>
 						<button type="button" class="btn btn-outline-info mb-1" name="slotItem">0Y</button>
 						<button type="button" class="btn btn-outline-info mb-1" name="slotItem">0Z</button>
-					  </div>
+						</div>
 					</div>
-  
-				  </div>
+
+					</div>
 				</div>
-			  </div>
-			  <!-- CHAMBER 模式說明 -->
-			  <blockquote class="quote-secondary quote-warning">
+				</div>
+				<!-- CHAMBER 模式說明 -->
+				<blockquote class="quote-secondary quote-warning">
 				<p title="Source Title" data-i18n="">抽檢 Sheet 方式三選一</p>
 				<cite title="Source Title"> 1. CHAMBER Type</cite>
 				<p data-i18n="">
-				  - 指定 CH : 指定哪些 Chamber ID 的 Sheet 進行抽檢<br>
-				  - 平均分配 : 平均每一個 Chamber 抽幾片 (不指定 CH)<br>
+					- 指定 CH : 指定哪些 Chamber ID 的 Sheet 進行抽檢<br>
+					- 平均分配 : 平均每一個 Chamber 抽幾片 (不指定 CH)<br>
 				</p>
 				<cite title="Source Title" data-i18n=""> 2. 只抽檢 Process Sheet</cite>
 				<p data-i18n="">
-				  - Yes : 卡匣中在此 EQP 之 process sheet 才進行抽檢<br>
+					- Yes : 卡匣中在此 EQP 之 process sheet 才進行抽檢<br>
 				</p>
 				<cite title="Source Title" data-i18n=""> 3. 手動指定 Slot</cite>
 				<p data-i18n="">
-				  - 有手動指定 : 可設定 抽定 OP 抽檢 Slot<br>
-				  - 不手動指定 : 上述方式都不使用時, 以機台本身設定而抽檢<br>
+					- 有手動指定 : 可設定 抽定 OP 抽檢 Slot<br>
+					- 不手動指定 : 上述方式都不使用時, 以機台本身設定而抽檢<br>
 				</p>
 				<!-- <small>Someone famous in <cite title="Source Title">Source Title</cite></small> -->
-			  </blockquote>
-			  <!--/-->
+				</blockquote>
+				<!--/-->
 			</div>
-		  </div>
+			</div>
 		</div>
-  
+
 		
-	  </div>
-  
-	  <div class="col-12">
+		</div>
+
+		<div class="col-12">
 		<!-- 規則開關/作用時間 -->
 		<div class="card">
-		  <div class="card-body">
+			<div class="card-body">
 			<div class="row">
-			  <!-- on/off -->
-			  <div class="col-sm-6 offset-3">
+				<!-- on/off -->
+				<div class="col-sm-6 offset-3">
 				<label class="col-form-label" for="delayBtn">
-				  <span data-i18n="">規則開關</span>&ensp;<i class="fas fa-star-of-life text-danger text-xs"></i>
+					<span data-i18n="">規則開關</span>&ensp;<i class="fas fa-star-of-life text-danger text-xs"></i>
 				</label>
 				<div class="row">
-				  <div class="col-6 col-md-4 mb-2">
+					<div class="col-6 col-md-4 mb-2">
 					<button type="button" class="btn btn-outline-info btn-block active" name="validBtn" value="N">
-					  <i class="fas fa-times"></i>&ensp;<span data-i18n="">OFF</span>
+						<i class="fas fa-times"></i>&ensp;<span data-i18n="">OFF</span>
 					</button>
-				  </div>
-				  <div class="col-6 col-md-4 mb-2">
+					</div>
+					<div class="col-6 col-md-4 mb-2">
 					<button type="button" class="btn btn-outline-info btn-block" name="validBtn" value="Y">
-					  <i class="fas fa-check"></i>&ensp;<span data-i18n="">ON</span>
+						<i class="fas fa-check"></i>&ensp;<span data-i18n="">ON</span>
 					</button>
-				  </div>
+					</div>
 				</div>
-			  </div>
-			  <!-- 指定起迄時間 -->
-			  <div class="col-sm-6 offset-3">
+				</div>
+				<!-- 指定起迄時間 -->
+				<div class="col-sm-6 offset-3">
 				<label class="col-form-label" for="delayBtn">
-				  <span data-i18n="">指定起迄時間</span>&ensp;<i class="fas fa-star-of-life text-danger text-xs"></i>
+					<span data-i18n="">指定起迄時間</span>&ensp;<i class="fas fa-star-of-life text-danger text-xs"></i>
 				</label>
 				<div class="row">
-				  <div class="col-6 mb-2">
+					<div class="col-6 mb-2">
 					<div class="input-group date" id="ruleStartTimePicker" data-target-input="nearest">
-					  <input type="text" class="btn btn-outline-info form-control datetimepicker-input"
+						<input type="text" class="btn btn-outline-info form-control datetimepicker-input"
 						data-target="#ruleStartTimePicker" placeholder="YYYY-MM-DD HH24:00" />
-					  <div class="input-group-append" data-target="#ruleStartTimePicker" data-toggle="datetimepicker">
+						<div class="input-group-append" data-target="#ruleStartTimePicker" data-bs-toggle="datetimepicker">
 						<div class="btn btn-outline-info"><i class="fas fa-calendar-alt"></i></div>
-					  </div>
+						</div>
 					</div>
 					<small class="form-text text-muted text-right">Start Time</small>
-				  </div>
-				  <div class="col-6 mb-2">
+					</div>
+					<div class="col-6 mb-2">
 					<div class="input-group date" id="ruleEndTimePicker" data-target-input="nearest">
-					  <input type="text" class="btn btn-outline-info form-control datetimepicker-input"
+						<input type="text" class="btn btn-outline-info form-control datetimepicker-input"
 						data-target="#ruleEndTimePicker" placeholder="YYYY-MM-DD HH24:00" />
-					  <div class="input-group-append" data-target="#ruleEndTimePicker" data-toggle="datetimepicker">
+						<div class="input-group-append" data-target="#ruleEndTimePicker" data-bs-toggle="datetimepicker">
 						<div class="btn btn-outline-info"><i class="fas fa-calendar-alt"></i></div>
-					  </div>
+						</div>
 					</div>
 					<small class="form-text text-muted text-right">End Time</small>
-				  </div>
+					</div>
 				</div>
-			  </div>
-			  <!-- Rule Note -->
-			  <div class="col-sm-6 offset-3 was-validated mb-2">
+				</div>
+				<!-- Rule Note -->
+				<div class="col-sm-6 offset-3 was-validated mb-2">
 				<!-- <form class="was-validated"> -->
 				<label class="col-form-label" for="delayBtn">
-				  <span data-i18n="">Rule Note</span>&ensp;<i class="fas fa-star-of-life text-danger text-xs"></i>
+					<span data-i18n="">Rule Note</span>&ensp;<i class="fas fa-star-of-life text-danger text-xs"></i>
 				</label>
 				<textarea class="form-control is-invalid" id="ruleNote" placeholder="Required." required></textarea>
 				<!-- <div class="invalid-feedback"> -->
 				<!-- Please enter a message in the textarea. -->
 				<!-- </div> -->
-  
-			  </div>
-			  <!-- on/off -->
-			  <div class="col-sm-6 offset-3">
+
+				</div>
+				<!-- on/off -->
+				<div class="col-sm-6 offset-3">
 				<label class="col-form-label" for="delayBtn">
-				  <span data-i18n="">Rule Type</span>&ensp;<i class="fas fa-star-of-life text-danger text-xs"></i>
+					<span data-i18n="">Rule Type</span>&ensp;<i class="fas fa-star-of-life text-danger text-xs"></i>
 				</label>
 				<div class="row">
-				  <div class="col-6 col-md-4 mb-2">
+					<div class="col-6 col-md-4 mb-2">
 					<button type="button" class="btn btn-outline-info btn-block active" name="ruleTypeBtn" value="">
-					  <span data-i18n="">不分類</span>
+						<span data-i18n="">不分類</span>
 					</button>
-				  </div>
-				  <div class="col-6 col-md-4 mb-2">
+					</div>
+					<div class="col-6 col-md-4 mb-2">
 					<button type="button" class="btn btn-outline-info btn-block" name="ruleTypeBtn" value="ACTIVE_ONCE">
-					  <span data-i18n="">一次性</span>
+						<span data-i18n="">一次性</span>
 					</button>
-				  </div>
-				  <div class="col-6 col-md-4 mb-2">
+					</div>
+					<div class="col-6 col-md-4 mb-2">
 					<button type="button" class="btn btn-outline-info btn-block" name="ruleTypeBtn" value="REGULAR">
-					  <span data-i18n="">常規性</span>
+						<span data-i18n="">常規性</span>
 					</button>
-				  </div>
-				  <div class="col-12">
+					</div>
+					<div class="col-12">
 					<small class="form-text text-muted text-right">標註用規則分類 不影響規則執行</small>
-				  </div>
-  
+					</div>
+
 				</div>
-			  </div>
+				</div>
 			</div>
-  
+
 			<hr />
 			<!-- 返回 EQP 與 Submit -->
 			<div class="row mb-3 mt-3 text-center">
-			  <div class="col-3">
+				<div class="col-3">
 				<button type="button" class="btn btn-outline-warning btn-lg text-orange" name="returnEqpBtn"
-				  style="display: none;">
-				  <i class="fas fa-caret-left"></i>&ensp;<span data-i18n="return_to">返回</span> EQP
+					style="display: none;">
+					<i class="fas fa-caret-left"></i>&ensp;<span data-i18n="return_to">返回</span> EQP
 				</button>
-			  </div>
-			  <div class="col-5">
+				</div>
+				<div class="col-5">
 				<button type="button" class="btn btn-primary btn-lg" id="ruleSubmit">
-				  <i class="fas fa-play"></i>&ensp;Submit
+					<i class="fas fa-play"></i>&ensp;Submit
 				</button>
-			  </div>
+				</div>
 			</div>
-		  </div>
+			</div>
 		</div>
-  
-  
-	  </div>
-  
+
+
+		</div>
+
 	</div>
-  
+
 	<!-- Rule Group 選項 -->
 	<div class="modal fade" id="groupModal" style="display: none;" aria-hidden="true">
-	  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+		<div class="modal-dialog modal-xl modal-dialog-scrollable">
 		<div class="modal-content">
-		  <div class="modal-header">
+			<div class="modal-header">
 			<h4 class="modal-title">Join a Group</h4>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			  <span aria-hidden="true">×</span>
+			<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">×</span>
 			</button>
-		  </div>
-		  <div class="modal-body">
+			</div>
+			<div class="modal-body">
 			<h5>New</h5>
 			<div class="row">
-			  <div class="col-md-4 col-xl-3">
+				<div class="col-md-4 col-xl-3">
 				<input type="text" class="btn btn-outline-info btn-block" name="groupItem" maxlength="20" id="groupInput">
-			  </div>
+				</div>
 			</div>
 			<hr>
 			<h5>Join</h5>
 			<div class="row mb-3">
-			  <div class="col col-md-4 col-xl-3">
+				<div class="col col-md-4 col-xl-3">
 				<input class="form-control search-input" type="search" placeholder="Filter..." autocomplete="off"
-				  id="groupSearch">
+					id="groupSearch">
 				<span class="text-orange" data-i18n=""> * 輸入關鍵字</span>
-			  </div>
-			  <div class="col-auto">
+				</div>
+				<div class="col-auto">
 				<button class="btn btn-secondary" id="noGroupClear"><i class="fas fa-times"></i>All Clear</button>
-			  </div>
+				</div>
 			</div>
 			<div class="row" id="groupDiv"></div>
-		  </div>
-		  <div class="modal-footer justify-content-between">
-			<button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>
+			</div>
+			<div class="modal-footer justify-content-between">
+			<button type="button" class="btn btn-default btn-lg" data-bs-dismiss="modal">Close</button>
 			<button type="button" class="btn btn-primary btn-lg" id="groupOK">&ensp;&ensp;OK&ensp;&ensp;</button>
-		  </div>
+			</div>
 		</div>
 		<!-- /.modal-content -->
-	  </div>
-	  <!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal-dialog -->
 	</div>
-  
+
 	<!-- MODEL 複選或 ABBR 單選選項列表 -->
 	<div class="modal fade" id="modelAbbrModal" style="display: none;" aria-hidden="true">
-	  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+		<div class="modal-dialog modal-xl modal-dialog-scrollable">
 		<div class="modal-content">
-		  <div class="modal-header">
+			<div class="modal-header">
 			<h4 class="modal-title">Model or Abbr</h4>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			  <span aria-hidden="true">×</span>
+			<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">×</span>
 			</button>
-		  </div>
-		  <div class="modal-body">
+			</div>
+			<div class="modal-body">
 			<div class="row mb-3">
-			  <div class="col-12 col-md-9">
+				<div class="col-12 col-md-9">
 				<div class="row mb-3">
-				  <div class="col-4 col-sm-3" data-tablediv="abbrTableDiv" style="display: none;">
+					<div class="col-4 col-sm-3" data-tablediv="abbrTableDiv" style="display: none;">
 					<input class="form-control search-input" type="search" placeholder="Filter..." autocomplete="off"
-					  id="abbrSearch">
-				  </div>
-				  <!-- <div class="col-auto">
+						id="abbrSearch">
+					</div>
+					<!-- <div class="col-auto">
 					<button class="btn btn-secondary" id="smOpClear"><i class="fas fa-times"></i></button>
-				  </div> -->
+					</div> -->
 				</div>
 				<div class="row">
-				  <div class="col-12" data-tablediv="abbrTableDiv">
+					<div class="col-12" data-tablediv="abbrTableDiv">
 					<table class="table" id="abbrTable"></table>
-				  </div>
+					</div>
 				</div>
-			  </div>
-			  <!-- 已選列表 -->
-			  <div class="col-12 col-md-3 border-left pl-4 pr-4">
+				</div>
+				<!-- 已選列表 -->
+				<div class="col-12 col-md-3 border-left pl-4 pr-4">
 				<div class="row">
-				  <p class="border-secondary text-secondary valueText"><span data-i18n="picked_item">已選項目</span></p>
+					<p class="border-secondary text-secondary valueText"><span data-i18n="picked_item">已選項目</span></p>
 				</div>
 				<div class="row" id="modelAbbrPickedDiv"></div>
-			  </div>
+				</div>
 			</div>
-		  </div>
-		  <div class="modal-footer justify-content-between">
-			<button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>
+			</div>
+			<div class="modal-footer justify-content-between">
+			<button type="button" class="btn btn-default btn-lg" data-bs-dismiss="modal">Close</button>
 			<button type="button" class="btn btn-primary btn-lg" id="modelAbbrOK">&ensp;&ensp;OK&ensp;&ensp;</button>
-		  </div>
+			</div>
 		</div>
 		<!-- /.modal-content -->
-	  </div>
-	  <!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal-dialog -->
 	</div>
-  
+
 	<!-- Logoff Op 選項列表. 要先選 Eqp Id -->
 	<div class="modal fade" id="logoffOpModal" style="display: none;" aria-hidden="true">
-	  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+		<div class="modal-dialog modal-xl modal-dialog-scrollable">
 		<div class="modal-content">
-		  <div class="modal-header">
+			<div class="modal-header">
 			<h4 class="modal-title">Logoff OP</h4>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			  <span aria-hidden="true">×</span>
+			<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">×</span>
 			</button>
-		  </div>
-		  <div class="modal-body">
+			</div>
+			<div class="modal-body">
 			<div class="row">
-			  <div class="col-12 col-md-9">
+				<div class="col-12 col-md-9">
 				<div class="row mb-3" id="logoffOpDiv"></div>
 				<div id="reworkOpDiv">
-				  <p class="border-secondary text-left text-secondary valueText w-25" data-i18n="">Rework</p>
-				  <div class="row"></div>
+					<p class="border-secondary text-left text-secondary valueText w-25" data-i18n="">Rework</p>
+					<div class="row"></div>
 				</div>
 				<div id="extraOpDiv">
-				  <p class="border-secondary text-left text-secondary valueText w-25" data-i18n="">Extra</p>
-				  <div class="row"></div>
+					<p class="border-secondary text-left text-secondary valueText w-25" data-i18n="">Extra</p>
+					<div class="row"></div>
 				</div>
-			  </div>
-			  <div class="col-12 col-md-3 border-left pl-4 pr-4">
+				</div>
+				<div class="col-12 col-md-3 border-left pl-4 pr-4">
 				<div class="row">
-				  <p class="border-secondary text-secondary valueText" data-i18n="">已選站點</p>
+					<p class="border-secondary text-secondary valueText" data-i18n="">已選站點</p>
 				</div>
 				<div class="row" id="logoffPickedDiv"> </div>
-			  </div>
+				</div>
 			</div>
-		  </div>
-		  <div class="modal-footer justify-content-between">
-			<button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>
-			<button type="button" class="btn btn-primary btn-lg" id="logoffOpOK">&ensp;&ensp;OK&ensp;&ensp;</button>
-		  </div>
+			</div>
+			<div class="modal-footer justify-content-between">
+				<button type="button" class="btn btn-default btn-lg" data-bs-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary btn-lg" id="logoffOpOK">&ensp;&ensp;OK&ensp;&ensp;</button>
+			</div>
 		</div>
 		<!-- /.modal-content -->
-	  </div>
-	  <!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal-dialog -->
 	</div>
-  
+
 	<!-- Normal Op 選項 for #futureSampOP, #finishHoldOP, #safeOP -->
 	<div class="modal fade" id="normalOpModal" style="display: none;" aria-hidden="true">
-	  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+		<div class="modal-dialog modal-xl modal-dialog-scrollable">
 		<div class="modal-content">
-		  <div class="modal-header">
+			<div class="modal-header">
 			<h4 class="modal-title">Main OP : Select One</h4>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			  <span aria-hidden="true">×</span>
+			<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">×</span>
 			</button>
-		  </div>
-		  <div class="modal-body">
+			</div>
+			<div class="modal-body">
 			<div class="row mb-3">
-			  <div class="col-6 col-sm-3">
+				<div class="col-6 col-sm-3">
 				<input class="form-control search-input" type="search" placeholder="Filter..." autocomplete="off"
-				  id="normalOpSearch">
+					id="normalOpSearch">
 				<span class="text-orange" data-i18n=""> * 請先輸入過濾. 謝謝. </span>
-			  </div>
-			  <div class="col-auto">
+				</div>
+				<div class="col-auto">
 				<button class="btn btn-secondary" id="noOpClear"><i class="fas fa-times"></i> All Clear</button>
-			  </div>
+				</div>
 			</div>
 			<div class="row" id="normalOpDiv"></div>
-		  </div>
-		  <div class="modal-footer justify-content-between">
-			<button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>
+			</div>
+			<div class="modal-footer justify-content-between">
+			<button type="button" class="btn btn-default btn-lg" data-bs-dismiss="modal">Close</button>
 			<button type="button" class="btn btn-primary btn-lg" id="normalOpOK">&ensp;&ensp;OK&ensp;&ensp;</button>
-		  </div>
+			</div>
 		</div>
 		<!-- /.modal-content -->
-	  </div>
-	  <!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal-dialog -->
 	</div>
-  
+
 	<!-- Sampling Op Modal -->
 	<div class="modal fade" id="sampOpModal" style="display: none;" aria-hidden="true">
-	  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+		<div class="modal-dialog modal-xl modal-dialog-scrollable">
 		<div class="modal-content">
-		  <div class="modal-header">
+			<div class="modal-header">
 			<h4 class="modal-title">Sampling OP</h4>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			  <span aria-hidden="true">×</span>
+			<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">×</span>
 			</button>
-		  </div>
-		  <div class="modal-body">
+			</div>
+			<div class="modal-body">
 			<div class="row mb-3">
-			  <div class="col-12 col-md-9">
+				<div class="col-12 col-md-9">
 				<div class="row mb-3">
-				  <div class="col-4 col-sm-3">
+					<div class="col-4 col-sm-3">
 					<div class="dropdown">
-					  <button type="button" class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown"><span
-						  id="pepPickDown"></button>
-					  <ul class="dropdown-menu" id="pepListUl">
+						<button type="button" class="btn btn-primary btn-block dropdown-toggle" data-bs-toggle="dropdown"><span
+							id="pepPickDown"></button>
+						<ul class="dropdown-menu" id="pepListUl">
 						<li class="dropdown-item">
-						  <button class="btn btn-link btn-sm" name="pepItem">pep1</button>
+							<button class="btn btn-link btn-sm" name="pepItem">pep1</button>
 						</li>
-					  </ul>
+						</ul>
 					</div>
-				  </div>
-				  <!-- <div class="col-4 col-sm-3">
+					</div>
+					<!-- <div class="col-4 col-sm-3">
 					<input class="form-control search-input" type="search" placeholder="Filter..."
 							autocomplete="off" id="sampOpSearch">
-  
-				  </div> -->
-				  <!-- <div class="col-auto">
+
+					</div> -->
+					<!-- <div class="col-auto">
 					<button class="btn btn-secondary" id="smOpClear"><i class="fas fa-times"></i></button>
-				  </div> -->
+					</div> -->
 				</div>
 				<div class="row mb-3" id="sampItemDiv">
-  
+
 				</div>
-			  </div>
-			  <div class="col-12 col-md-3 border-left pl-4 pr-4">
+				</div>
+				<div class="col-12 col-md-3 border-left pl-4 pr-4">
 				<div class="row mb-3">
-				  <p class="border-secondary text-secondary valueText" data-i18n="">已選抽檢站點</p>
+					<p class="border-secondary text-secondary valueText" data-i18n="">已選抽檢站點</p>
 				</div>
 				<div class="row" id="sampPickedDiv"> </div>
-  
-			  </div>
-  
+
+				</div>
+
 			</div>
-		  </div>
-		  <div class="modal-footer justify-content-between">
-			<button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>
+			</div>
+			<div class="modal-footer justify-content-between">
+			<button type="button" class="btn btn-default btn-lg" data-bs-dismiss="modal">Close</button>
 			<button type="button" class="btn btn-primary btn-lg" id="sampOpOK">&ensp;&ensp;OK&ensp;&ensp;</button>
-		  </div>
+			</div>
 		</div>
 		<!-- /.modal-content -->
-	  </div>
-	  <!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal-dialog -->
 	</div>
-  
+
 	<!-- Sampling Route Modal -->
 	<div class="modal fade" id="sampRouteModal" style="display: none;" aria-hidden="true">
-	  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+		<div class="modal-dialog modal-xl modal-dialog-scrollable">
 		<div class="modal-content">
-		  <div class="modal-header">
+			<div class="modal-header">
 			<h4 class="modal-title">Sampling Route</h4>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			  <span aria-hidden="true">×</span>
+			<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">×</span>
 			</button>
-		  </div>
-		  <div class="modal-body">
-			<div class="row">
-			  <!-- <div class="col"></div> -->
-			  <div class="col-auto text-right">
-				<p class="text-primary valueText">
-				  <i class="fas fa-list fa-fw"></i>&ensp;<span id="pickSampOpList">Sampling OP List</span>
-				</p>
-			  </div>
-			  <div class="w-100"></div>
-			  <div class="col-auto mt-2">
-				<p class="text-danger valueText text-left">
-				  <i class="fas fa-times fa-fw"></i>&ensp;No Route. Penal Size :
-				</p>
-			  </div>
-			  <div class="col mt-2">
-				<div class="border-0 text-left text-danger valueText" id="noRoutePanelSize"></div>
-			  </div>
-			  <div class="w-100"></div>
-			  <div class="col-auto mt-2">
-				<p class="text-info valueText text-left">
-				  <i class="fas fa-check fa-fw"></i>&ensp;Sampling Route List :
-				</p>
-			  </div>
-			  <div class="col-12">
-				<table class="table" id="sampRouteTable"></table>
-			  </div>
 			</div>
-		  </div>
-		  <div class="modal-footer justify-content-end">
-			<button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>
+			<div class="modal-body">
+			<div class="row">
+				<!-- <div class="col"></div> -->
+				<div class="col-auto text-right">
+				<p class="text-primary valueText">
+					<i class="fas fa-list fa-fw"></i>&ensp;<span id="pickSampOpList">Sampling OP List</span>
+				</p>
+				</div>
+				<div class="w-100"></div>
+				<div class="col-auto mt-2">
+				<p class="text-danger valueText text-left">
+					<i class="fas fa-times fa-fw"></i>&ensp;No Route. Penal Size :
+				</p>
+				</div>
+				<div class="col mt-2">
+				<div class="border-0 text-left text-danger valueText" id="noRoutePanelSize"></div>
+				</div>
+				<div class="w-100"></div>
+				<div class="col-auto mt-2">
+				<p class="text-info valueText text-left">
+					<i class="fas fa-check fa-fw"></i>&ensp;Sampling Route List :
+				</p>
+				</div>
+				<div class="col-12">
+				<table class="table" id="sampRouteTable"></table>
+				</div>
+			</div>
+			</div>
+			<div class="modal-footer justify-content-end">
+			<button type="button" class="btn btn-default btn-lg" data-bs-dismiss="modal">Close</button>
 			<button type="button" class="btn btn-primary btn-lg" id="sampRouteIdOK">&ensp;&ensp;OK&ensp;&ensp;</button>
-		  </div>
+			</div>
 		</div>
 		<!-- /.modal-content -->
-	  </div>
-	  <!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal-dialog -->
 	</div>
-  
+
 	<!-- Sampling Op : SLOT Modal -->
 	<div class="modal fade" id="sampOpSlotModal" style="display: none;" aria-hidden="true">
-	  <div class="modal-dialog modal-xl modal-dialog-scrollable">
-		<div class="modal-content">
-		  <div class="modal-header">
-			<h4 class="modal-title">Sampling OP Assign Slot</h4>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			  <span aria-hidden="true">×</span>
-			</button>
-		  </div>
-		  <div class="modal-body">
-			<div class="row mb-3">
-			  <!-- Left : opSlotItem -->
-			  <div class="col-12 col-md-5 border-right pr-4 pl-4">
-				<div class="row mb-3">
-				  <p class="border-secondary text-secondary valueText" data-i18n="">Slot</p>
+		<div class="modal-dialog modal-xl modal-dialog-scrollable">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Sampling OP Assign Slot</h4>
+					<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
 				</div>
-				<div class="row">
-				  <div class="col">
-					<button type="button" class="btn btn-outline-info btn-block mb-3" id="opslotAllBtn">
-					  <i class="fas fa-check-circle"></i> ALL</button>
-				  </div>
-				  <div class="col">
-					<button type="button" class="btn btn-outline-info btn-block mb-3" id="opslotResetBtn">
-					  <i class="fas fa-trash"></i> Clear</button>
-				  </div>
-				</div>
-				<!---- slot No. Btn ---->
-				<div class="row">
-				  <div class="col-12" id="opSlotItemDiv">
-					<div class="mb-1">
-					  <button type="button" class="btn btn-outline-info mb-1" name="opSlotItem">0X</button>
-					  <button type="button" class="btn btn-outline-info mb-1" name="opSlotItem">0Y</button>
-					  <button type="button" class="btn btn-outline-info mb-1" name="opSlotItem">0Z</button>
+				<div class="modal-body">
+					<div class="row mb-3">
+						<!-- Left : opSlotItem -->
+						<div class="col-12 col-md-5 border-right pr-4 pl-4">
+							<div class="row mb-3">
+								<p class="border-secondary text-secondary valueText" data-i18n="">Slot</p>
+							</div>
+							<div class="row">
+								<div class="col">
+									<button type="button" class="btn btn-outline-info btn-block mb-3" id="opslotAllBtn">
+										<i class="fas fa-check-circle"></i> ALL</button>
+								</div>
+								<div class="col">
+									<button type="button" class="btn btn-outline-info btn-block mb-3" id="opslotResetBtn">
+										<i class="fas fa-trash"></i> Clear</button>
+								</div>
+							</div>
+							<!---- slot No. Btn ---->
+							<div class="row">
+								<div class="col-12" id="opSlotItemDiv">
+									<div class="mb-1">
+										<button type="button" class="btn btn-outline-info mb-1" name="opSlotItem">0X</button>
+										<button type="button" class="btn btn-outline-info mb-1" name="opSlotItem">0Y</button>
+										<button type="button" class="btn btn-outline-info mb-1" name="opSlotItem">0Z</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Right : op slot list area -->
+						<div class="col-12 col-md-7">
+							<!-- Default Btn (as sample)-->
+							<div class="row mt-2" id="sampleDefaultDiv">
+								<div class="col-auto" name="setLRBtnDiv">
+									<button class="btn btn-info btn-lg" onclick="setOpSlotChosenValue(this, 'setItemToOp');">
+										<i class="fas fa-arrow-right"></i></button>
+									<button class="btn btn-dark align-top" onclick="setOpSlotChosenValue(this, 'copyToItem');">
+										<i class="fas fa-arrow-left"></i></button>
+								</div>
+								<div class="col setSlotArea">
+									<div class="btn-group btn-block">
+										<label class="btn btn-info text-nowrap mb-0 text-bold opName" disabled>Default</label>
+										<button type="button" class="btn btn-info btn-block text-bold setOpSlotBtn" data-op="default"
+										disabled> </button>
+									</div>
+								</div>
+							</div>
+							<hr>
+							<div id="setModalOpsDiv"></div>
+						</div>
+
 					</div>
-				  </div>
 				</div>
-			  </div>
-			  <!-- Right : op slot list area -->
-			  <div class="col-12 col-md-7">
-				<!-- Default Btn (as sample)-->
-				<div class="row mt-2" id="sampleDefaultDiv">
-				  <div class="col-auto" name="setLRBtnDiv">
-					<button class="btn btn-info btn-lg" onclick="setOpSlotChosenValue(this, 'setItemToOp');">
-					  <i class="fas fa-arrow-right"></i></button>
-					<button class="btn btn-dark align-top" onclick="setOpSlotChosenValue(this, 'copyToItem');">
-					  <i class="fas fa-arrow-left"></i></button>
-				  </div>
-				  <div class="col setSlotArea">
-					<div class="btn-group btn-block">
-					  <label class="btn btn-info text-nowrap mb-0 text-bold opName" disabled>Default</label>
-					  <button type="button" class="btn btn-info btn-block text-bold setOpSlotBtn" data-op="default"
-						disabled> </button>
-					</div>
-				  </div>
+				<div class="modal-footer justify-content-between">
+					<button type="button" class="btn btn-default btn-lg" data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary btn-lg" id="setOpSlotOK">&ensp;&ensp;OK&ensp;&ensp;</button>
 				</div>
-				<hr>
-				<div id="setModalOpsDiv"></div>
-			  </div>
-  
 			</div>
-		  </div>
-		  <div class="modal-footer justify-content-between">
-			<button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>
-			<button type="button" class="btn btn-primary btn-lg" id="setOpSlotOK">&ensp;&ensp;OK&ensp;&ensp;</button>
-		  </div>
+			<!-- /.modal-content -->
 		</div>
-		<!-- /.modal-content -->
-	  </div>
-	  <!-- /.modal-dialog -->
+		<!-- /.modal-dialog -->
 	</div>
+</div><!-- /#MASampling_Rule_Edit -->
   
-  </div><!-- /#MASampling_Rule_Edit -->
-  
-<!-- current page js -->
-<!--===============================================================================================-->
-	<script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
-<!--===============================================================================================-->
-	<script th:src="@{/vendor/animsition/js/animsition.min.js}"></script>
-<!--===============================================================================================-->
+<!-- bootstrap
 	<script th:src="@{/vendor/bootstrap/js/popper.js}"></script>
-	<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
-<!--===============================================================================================-->
-	<script th:src="@{/vendor/select2/select2.min.js}"></script>
-<!--===============================================================================================-->
-	<script th:src="@{/vendor/daterangepicker/moment.min.js}"></script>
-	<script th:src="@{/vendor/daterangepicker/daterangepicker.js}"></script>
-<!--===============================================================================================-->
-	<script th:src="@{/vendor/countdowntime/countdowntime.js}"></script>
-<!--===============================================================================================-->
-	<script th:src="@{/uiCore/datetimepicker/moment.min.js}"></script>
-	<script th:src="@{/uiCore/datetimepicker/tempusdominus-bootstrap-4.min.js}"></script>
+	<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script> -->
+
+<!-- JS===============================================================================================-->
+	<body th:include="common :: js"></body>
+<!-- Not common ===============================================================================================-->
+<!-- tempus-dominus-bootstrap -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js" integrity="sha512-k6/Bkb8Fxf/c1Tkyl39yJwcOZ1P4cRrJu77p83zJjN2Z55prbFHxPs9vN7q3l3+tSMGPDdoH51AEU8Vgo1cgAA==" crossorigin="anonymous"></script>
 <!-- boostrapTable -->
     <script th:src="@{/uiCore/bootstrap-table@1.20.1/dist/bootstrap-table.min.js}"></script>
-    <script th:src="@{/uiCore/bootstrap-table@1.20.1/dist/extensions/sticky-header/bootstrap-table-sticky-header.js}"></script>
+	<!-- 進階插件 -->
+	<script th:src="@{/uiCore/bootstrap-table@1.20.1/dist/extensions/sticky-header/bootstrap-table-sticky-header.js}"></script>
     <script th:src="@{/uiCore/bootstrap-table@1.20.1/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js}"></script>
+<!--===============================================================================================
+	<script th:src="@{/js/sampling.js}"></script> -->
 
 	<script>
-		var G_MainRoot = "/demo-maven/";
+		var G_MainRoot = "/test-system";
+		//G_MainRoot = location.origin + "/test-system";
 		(function load_js() {
-			$("script[name=RuleEditJs]").remove();
-			var ver = "831"; //prod use
-			// var ver = new Date().getTime(); //dev use
-			var url = G_MainRoot + 'js/MASampling_Rule_Edit_LotStart.js?v=' + ver;
+			$("script[name=SamplingJS]").remove();
+			// var ver = "1111"; //prod use
+			var ver = new Date().getTime(); //dev use
+			var url = G_MainRoot + '/js/sampling.js?v=' + ver;
 			var body = document.getElementsByTagName('body')[0];
 			var Script = document.createElement('script');
 			Script.src = url;
 			Script.setAttribute("type", "text/javascript");
-			Script.setAttribute("name", "RuleEditJs");
+			Script.setAttribute("name", "SamplingJS");
 			body.appendChild(Script);
 		})();
 	</script>

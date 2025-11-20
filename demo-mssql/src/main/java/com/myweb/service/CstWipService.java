@@ -10,16 +10,21 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.myweb.dao.MyTestDao;
+import com.myweb.dao.TestPepDao;
 import com.myweb.model.MyTestModel;
-import com.myweb.model.ResultData;
+import com.myweb.model.TestPep;
 import com.myweb.repository.TestSqlRepository;
 import com.myweb.vo.CommonVO;
+import com.myweb.vo.ResultData;
 
 @Service
 public class CstWipService {
 
 	@Autowired
 	private MyTestDao myTestDao;
+
+	@Autowired
+	private TestPepDao testPepDao;
 
 	@Autowired
 	private TestSqlRepository testSqlRepository;
@@ -95,7 +100,7 @@ public class CstWipService {
 		return lotStartBatchRule;
 	}
 
-	public List getModelAbbrOption(CommonVO vo) {
+	public void getModelAbbrOption(CommonVO vo) {
 		String className = new Object() {
 		}.getClass().getName();
 		String methodName = new Object() {
@@ -104,9 +109,14 @@ public class CstWipService {
 		System.out.println("Go through > " + className + " > " + methodName + " Start:");
 		System.out.println("param: " + vo.toString());
 		List modelAbbrOption = testSqlRepository.modelAbbrOption(vo);
+		vo.setAbbrList(testSqlRepository.modelAbbrOption(vo));
+		List<TestPep> testPepList = testPepDao.findAll(Sort.by(Sort.Direction.ASC, "id"));
+		System.out.println("testPepList size: " + testPepList.size());
+		vo.setPepList(testPepList);
+		vo.setSlotNum(testPepList);
 		System.out.println("Go through > " + className + " > " + methodName + " End:");
 
-		return modelAbbrOption;
+		return;
 	}
 
 	// TODO

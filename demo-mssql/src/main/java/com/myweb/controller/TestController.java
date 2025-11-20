@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.myweb.model.MyTestModel;
-import com.myweb.model.Pojo;
 import com.myweb.service.CstWipService;
 import com.myweb.vo.CommonVO;
+import com.myweb.vo.ReqData;
+import com.myweb.vo.ResultData;
+
+import tool.ToolUtility;
 
 @Controller
 @RequestMapping("/test")
@@ -26,13 +30,37 @@ public class TestController {
 	CstWipService cstWipService;
 
 	@ModelAttribute("initData")
-	public Pojo checkUAC() {
+	public ReqData checkUAC() {
 		System.out.println("testController check UAC");
 		// TODO UAC
-		Pojo initPojo = new Pojo();
+		ReqData initPojo = new ReqData();
 		// if fail can set fail page
 		initPojo.setPage("index");// 可調整為要使用的html
 		return initPojo;
+	}
+
+	@PostMapping(path = "/MultiValueMap")
+	@ResponseBody
+	public ResultData MultiValueMap(@RequestBody MultiValueMap map) throws Exception {
+		ResultData result = new ResultData();
+		try {
+			String className = new Object() {
+			}.getClass().getName();
+			String methodName = new Object() {
+			}.getClass().getEnclosingMethod().getName();
+
+			ToolUtility.printReqData(1, className, methodName, "");
+			System.out.println("data: " + map);
+			System.out.println("data: " + map.toString());
+
+			ToolUtility.printReqData(0, className, methodName, "");
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return result;
 	}
 
 	@PostMapping(path = "/initOrder")
@@ -48,13 +76,13 @@ public class TestController {
 			String methodName = new Object() {
 			}.getClass().getEnclosingMethod().getName();
 
-			System.out.println("Go through > " + className + " > " + methodName + " Start---");
+			ToolUtility.printReqData(1, className, methodName, "");
 			System.out.println("+++ " + vo.toString());
 
 			vo.setMyTestModelList(cstWipService.getWip());
 			// vo.setSqlData(cstWipService.getLotStartBatchRule(vo)); //可用
 
-			System.out.println("className:" + className + ", methodName: " + methodName + ", End---");
+			ToolUtility.printReqData(0, className, methodName, "");
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -76,12 +104,15 @@ public class TestController {
 			String methodName = new Object() {
 			}.getClass().getEnclosingMethod().getName();
 
-			System.out.println("Go through > " + className + " > " + methodName + " Start---");
+			ToolUtility.printReqData(1, className, methodName, "");
 			System.out.println("param: " + vo.toString());
 
-			vo.setSqlData(cstWipService.getModelAbbrOption(vo));
+			cstWipService.getModelAbbrOption(vo);
+//			vo.setAbbrList(cstWipService.getModelAbbrOption(vo));
+//			vo.setSlotNum(sqlData);
+//			vo.setPepList(sqlData);
 
-			System.out.println("Go through > " + className + " > " + methodName + " End---");
+			ToolUtility.printReqData(0, className, methodName, "");
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -99,10 +130,14 @@ public class TestController {
 
 	@GetMapping("/go/order")
 	// location.href = 'http://localhost:8081/demo-maven/test/go/order?lastName=...'
-	public String goOrderForm(@ModelAttribute("initData") Pojo initPojo,
+	public String goOrderForm(@ModelAttribute("initData") ReqData initPojo,
 			@RequestParam(value = "lastName", defaultValue = "defaultTest") String lastName) {
-		System.out.println("method:orderFormTest");
-		System.out.println("param > lastName: " + lastName);
+		String className = new Object() {
+		}.getClass().getName();
+		String methodName = new Object() {
+		}.getClass().getEnclosingMethod().getName();
+		ToolUtility.printReqData(1, className, methodName, lastName);
+
 		System.out.println("go to 'orderForm.html'");
 		// cstWipService.getWipByLastName("3TestLastName");
 		return "orderForm";
@@ -110,7 +145,7 @@ public class TestController {
 
 	@GetMapping("/go/test")
 	// location.href = 'http://localhost:8081/demo-maven/test/go/order?lastName=...'
-	public String goTest(@ModelAttribute("initData") Pojo initPojo,
+	public String goTest(@ModelAttribute("initData") ReqData initPojo,
 			@RequestParam(value = "lastName", defaultValue = "defaultTest") String lastName) {
 		System.out.println("method:orderFormTest");
 		System.out.println("param > lastName: " + lastName);
@@ -143,7 +178,7 @@ public class TestController {
 	@PostMapping(path = "/query")
 	@ResponseBody
 	// ajax http://localhost:8081/demo-maven/test/query
-	public List query1(@ModelAttribute("initData") Pojo initPojo, @RequestBody CommonVO vo) {
+	public List query1(@ModelAttribute("initData") ReqData initPojo, @RequestBody CommonVO vo) {
 
 		List<MyTestModel> myTestModelList = new ArrayList<MyTestModel>();
 
@@ -153,7 +188,7 @@ public class TestController {
 			String methodName = new Object() {
 			}.getClass().getEnclosingMethod().getName();
 
-			System.out.println("Go through > " + className + " > " + methodName + " Start---");
+			ToolUtility.printReqData(1, className, methodName, "");
 
 			// 方法1 getData By LastName --可用
 //			myTestModelList = cstWipService.getWipByLastName(lastName);
@@ -172,7 +207,7 @@ public class TestController {
 			// 方法3 sql --可用
 //			resultData = cstWipService.getLotStartBatchRule(vo);
 
-			System.out.println("Go through > " + className + " > " + methodName + " End---");
+			ToolUtility.printReqData(0, className, methodName, "");
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -185,7 +220,7 @@ public class TestController {
 
 	@PostMapping(path = "/query2")
 	@ResponseBody
-	public List<MyTestModel> query2(@ModelAttribute("initData") Pojo initPojo, @RequestBody CommonVO vo) {
+	public List<MyTestModel> query2(@ModelAttribute("initData") ReqData initPojo, @RequestBody CommonVO vo) {
 		System.out.println("/query2 >> page: " + initPojo.toString());
 		List<MyTestModel> myTestModelList = new ArrayList<MyTestModel>();
 		System.out.println(vo.toString());
@@ -195,7 +230,7 @@ public class TestController {
 			String methodName = new Object() {
 			}.getClass().getEnclosingMethod().getName();
 
-			System.out.println("Go through > " + className + " > " + methodName + " Start---");
+			ToolUtility.printReqData(1, className, methodName, "");
 
 			// 方法1
 			myTestModelList = cstWipService.getWipByLastName(vo.getName());
@@ -204,7 +239,7 @@ public class TestController {
 				System.out.println(myTestModelList.get(i).toString());
 			}
 
-			System.out.println("Go through > " + className + " > " + methodName + " End---");
+			ToolUtility.printReqData(0, className, methodName, "");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -223,7 +258,7 @@ public class TestController {
 			String methodName = new Object() {
 			}.getClass().getEnclosingMethod().getName();
 
-			System.out.println("Go through > " + className + " > " + methodName + " Start---");
+			ToolUtility.printReqData(1, className, methodName, "");
 			System.out.println("event: " + event);
 
 			if ("SAVE_MY_TEST".equals(event))
@@ -231,7 +266,7 @@ public class TestController {
 
 				cstWipService.saveWip(makeFakeData());
 
-			System.out.println("Go through > " + className + " > " + methodName + " End---");
+			ToolUtility.printReqData(0, className, methodName, "");
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -251,11 +286,11 @@ public class TestController {
 			String methodName = new Object() {
 			}.getClass().getEnclosingMethod().getName();
 
-			System.out.println("Go through > " + className + " > " + methodName + " Start---");
+			ToolUtility.printReqData(1, className, methodName, "");
 			MyTestModel myTestModel = new MyTestModel();
 			myTestModel.setId(10L);
 			cstWipService.deleteWip(myTestModel);
-			System.out.println("Go through > " + className + " > " + methodName + " End---");
+			ToolUtility.printReqData(0, className, methodName, "");
 		} catch (SecurityException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

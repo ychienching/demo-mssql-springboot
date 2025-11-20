@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.myweb.model.ResultData;
 import com.myweb.vo.CommonVO;
+import com.myweb.vo.ResultData;
 
 @Repository
 public class TestSqlRepository {
@@ -60,7 +60,7 @@ public class TestSqlRepository {
 		List resultData = null;
 		try {
 			StringBuffer sql = new StringBuffer();
-			String parea = "ARRAY";
+			// String parea = "ARRAY";
 
 			sql.append("SELECT m.panel_size, b.model_no, b.abbr_no, b.description ");
 			sql.append("  FROM c_rou_mdlabbr b, c_rou_mdl m ");
@@ -70,10 +70,10 @@ public class TestSqlRepository {
 			sql.append(" ORDER BY model_cat DESC, model_no, abbr_no ");
 
 			System.out.println("modelAbbrOption sql= " + sql.toString());
-			System.out.println("modelAbbrOption param: 1.parea= " + parea);
-			resultData = jdbcTemplate.queryForList(sql.toString(), parea);
+			System.out.println("modelAbbrOption param: 1.parea= " + vo.getParea());
+			resultData = jdbcTemplate.queryForList(sql.toString(), vo.getParea());
 
-			resultData = jdbcTemplate.queryForList(sql.toString());
+			// resultData = jdbcTemplate.queryForList(sql.toString());
 			System.out.println("modelAbbrOption rows : " + resultData.toString());
 
 		} catch (Exception e) {

@@ -1,41 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="BIG5">
-<title>Insert title here</title>
+	<meta charset="BIG5">
+	<title>Test Something</title>
 
+	<head th:include="common :: css"></head>
+	<head th:include="bootstrap-table :: css"></head>
 <!--CSS===============================================================================================-->
     <link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
-<!-- boostrapTable -->
-    <link rel="stylesheet" type="text/css" th:href="@{/uiCore/bootstrap-table@1.20.1/dist/bootstrap-table.min.css}">
-    <!-- 進階插件 -->
-	<link rel="stylesheet" type="text/css" th:href="@{/uiCore/bootstrap-table@1.20.1/dist/extensions/sticky-header/bootstrap-table-sticky-header.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/uiCore/bootstrap-table@1.20.1/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.css}">
-	
-<!--JS===============================================================================================-->
-    <script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
-	<script th:src="@{/vendor/animsition/js/animsition.min.js}"></script>
-<!--===============================================================================================-->
-	<script th:src="@{/vendor/bootstrap/js/popper.js}"></script>
-	<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
-<!--===============================================================================================-->
-	<script th:src="@{/vendor/select2/select2.min.js}"></script>
-<!--===============================================================================================-->
-	<script th:src="@{/vendor/daterangepicker/moment.min.js}"></script>
-	<script th:src="@{/vendor/daterangepicker/daterangepicker.js}"></script>
-<!--===============================================================================================-->
-	<script th:src="@{/vendor/countdowntime/countdowntime.js}"></script>
-<!-- boostrapTable -->
-    <script th:src="@{/uiCore/bootstrap-table@1.20.1/dist/bootstrap-table.min.js}"></script>
-    <!-- 進階插件 -->
-	<script th:src="@{/uiCore/bootstrap-table@1.20.1/dist/extensions/sticky-header/bootstrap-table-sticky-header.js}"></script>
-    <script th:src="@{/uiCore/bootstrap-table@1.20.1/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js}"></script>
-<!--===============================================================================================-->
-	<script th:src="@{/js/orderForm.js}"></script>
+
 
 </head>
-<body>
-	<h1 style="color: red;">Something Test Program !</h1>
+<body class="re-content">
+	<span class="title">
+		Something Test Program !
+	</span>
 	<br>
 	<div class="col-12"></div>
 	<br>
@@ -51,11 +30,16 @@
 	
 	<div class="col-12"></div>
 	<br>
-	<button id="dbBtn3" type="button" class="btn btn-primary">Delete</button>
+	<button id="dbBtn3" type="button" class="btn btn-danger">Delete</button>
 
 	<div class="col-12"></div>
 	<br>
-	<!-- <button id="goSamplingBtn" type="button" class="btn btn-primary">Go Sampling</button> -->
+	<button id="goSamplingBtn" type="button" class="btn btn-primary">Go Sampling</button>
+
+	<div class="col-12"></div>
+	<br>
+	<button id="MultiValueMapBtn" type="button" class="btn btn-primary">MultiValueMap</button>
+	
 
 <!-- Cassette Wip Modal-->
 <div class="modal fade" id="testModal" tabindex="-1" role="dialog">
@@ -76,6 +60,13 @@
 	  	</div>
 	</div>
 </div>
+
+<!-- JS ===============================================================================================-->
+	<body th:include="common :: js"></body>
+	<body th:include="bootstrap-table :: js"></body>
+<!--===============================================================================================-->
+	<script th:src="@{/js/utility.js}"></script>
+	<script th:src="@{/js/test.js}"></script>
 
 </body>
 </html>

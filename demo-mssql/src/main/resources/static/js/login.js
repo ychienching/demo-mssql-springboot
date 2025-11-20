@@ -1,14 +1,29 @@
-
+var G_MainRoot = location.origin + "/test-system"; // >> http://localhost:8086 + /test-system
 (function ($) {
-    // var G_MainRoot = "/test-system/";
-    var G_MainRoot = location.origin + "/test-system/";
-    
-    // var G_MainRoot = location.pathname;
-    // pathname: "/test-system/test/index2"
-
-    
 
     //$('.validate-form').on('submit',function(){});
+    // document.cookie = "account=" + '0';// 紀錄登入帳號歸0
+    console.log('login document.cookie: ', document.cookie);
+    // document.cookie = 'max-age=5';
+    // document.cookie = 'test1410=111';
+
+    //初始化登入帳號
+    deleteAccountCookie();
+    
+
+    $('#testBtn').on('click', function(){
+        let account = $("input[name='account']").val();
+
+        setAccountCookie(account)
+        
+    })
+
+    $('#test2Btn').on('click', function(){
+
+        let account = getLoginAccountByCookie()
+        console.log('login account: ', account);
+    })
+
 
 	$('#loginBtn').on('click', function(){
 		//[ Validate ]
@@ -24,31 +39,38 @@
 
         if(!checkSuccess) return;
 		var data = {
-			username: $("input[name='username']").val(),
+			account: $("input[name='account']").val(),
 			password: $("input[name='password']").val(),
 		};
         console.log('data: ',data);
-
-        //不導頁，傳接參數
+        
         $.ajax({
             type: "POST",
-            url: G_MainRoot + 'login',
+            url: G_MainRoot + '/login',
             // dataType: "json",
+            // true  = 非同步 > 可同時處理其他程式碼 (default)
+            // false = 同步   > 需等待response才會進行下一步
+            async: false,
             contentType:"application/json", //傳去格式 default: Content type 'application/x-www-form-urlencoded;charset=UTF-8'
             data: JSON.stringify(data),
             success: function(rs) {
                 console.log('rs: ',rs);
                 $('.spinner-border').hide();
                 if(rs.result==='Success'){
+                    setAccountCookie(data.account)
+                    // document.cookie = "account=" + data.account;
+                    window.location.href = G_MainRoot + '/index'; // 替換為你要跳轉的網址
+                    /*
                     Swal.fire({
                         title: rs.result,
                         icon: "success",
                         //draggable: true //可拖曳
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            window.location.href = G_MainRoot + 'index'; // 替換為你要跳轉的網址
+                            window.location.href = G_MainRoot + '/index'; // 替換為你要跳轉的網址
                         }
                     });
+                    */
                 } else {
                     Swal.fire({
                         title: rs.result,//顯示錯誤訊息
@@ -98,7 +120,29 @@
 
         $(thisAlert).removeClass('alert-validate');
     }
-    
-    
 
+    function setAccountCookie(account){
+        var data = {
+			account: account,
+		};
+        $.ajax({
+            type: "GET",
+            url: G_MainRoot + '/setAccountCookie',
+            // dataType: "json",
+            // contentType:"application/json",
+            // contentType:'application/x-www-form-urlencoded; charset=UTF-8', //default
+            // data: JSON.stringify(data),
+            data: data,
+            async: false,
+            success: function(rs) {
+                console.log('setAccountCookie rs: ',rs);
+                
+            },
+            error: function(xhr, status, error) {
+                console.log('error: ',error);
+            },
+        });// ajax
+    }
+    
+    
 })(jQuery);

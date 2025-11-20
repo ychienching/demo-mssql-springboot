@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="BIG5">
+	<title>Member Manager</title>
+
+<!--CSS===============================================================================================-->
+	<head th:include="common :: css"></head>
+	<head th:include="bootstrap-table :: css"></head>
+    <!-- <link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}"> -->
+
+
+</head>
+<body class="re-content">
+	<span class="title">
+		Member Manager
+	</span>
+	<br>
+	<br>
+	<div id="toolbar">
+		<button id="deleteBtn" type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i> Delete Selected</button>
+		<button onClick="showAddModal()" type="button" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> ADD</button>
+	</div>
+	 
+	<div class="col-10 table-overflow">
+		<div class="table-overflow-x">
+			<table style="table-layout: fixed;" id="memberTable"></table>
+		</div>
+	</div>
+
+
+<!-- 
+$modal-sm:                          300px;
+$modal-md:                          500px;
+$modal-lg:                          800px;
+$modal-xl:                          1140px;
+-->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-md" role="document">
+	  	<div class="modal-content">
+			<div class="modal-header text-center custom_modal_header">
+				Edit
+			<button type="button" class="close" data-bs-dismiss="modal"><span class="glyphicon glyphicon-remove"
+					style="font-size:32px;"></span></button>
+			</div>
+			<div class="modal-body">
+				<input name="id" type="hidden" maxlength="5">
+				<button style="display: none;" type="button" onClick="testS()" class="btn btn-primary">test</button>
+				Account
+				<div class="col-8">
+					<input name="account" type="text" class="form-control" maxlength="30" readonly>
+				</div>
+				<br>
+
+				<select id="mySelect" class="select-multiple" name="states" multiple="multiple" style="width: 75%;"></select>
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" onClick="saveEdit()" class="btn btn-primary">Save</button>
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			</div>
+	  	</div>
+	</div>
+</div>
+
+<!-- JS ===============================================================================================-->
+	<body th:include="common :: js"></body>
+	<body th:include="bootstrap-table :: js"></body>
+
+	<!--bootstrap-table-export-->
+	<script th:src="@{/uiCore/bootstrap-table@1.24.1/dist/extensions/export/bootstrap-table-export.min.js}"></script>
+	<!--在客户端保存生成的导出文件-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.15/plugins/export/libs/FileSaver.js/FileSaver.min.js"></script>
+	<!--以XLSX（Excel 2007+ XML格式）格式导出表（SheetJS）-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.6/xlsx.core.min.js"></script>
+	<!--以PNG格式导出表格-->
+	<!--对于IE支持包括 html2canvas 之前的 es6-promise-->
+	<script src="https://cdn.bootcss.com/es6-promise/4.1.1/es6-promise.auto.min.js"></script>
+	<script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+	<!--无论期望的格式如何，最后都包含 tableexport.jquery.plugin（不是tableexport）-->
+	<script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+<!--===============================================================================================-->
+	<script th:src="@{/js/utility.js}"></script>
+	<!-- <script th:src="@{/js/member.js}"></script> -->
+
+	<script>
+		(function load_js() {
+			$("script[name=memberJS]").remove();
+			// var ver = "1111"; //prod use
+			var ver = new Date().getTime(); //dev use
+			var url = G_MainRoot + '/js/member.js?v=' + ver;
+			var body = document.getElementsByTagName('body')[0];
+			var Script = document.createElement('script');
+			Script.src = url;
+			Script.setAttribute("type", "text/javascript");
+			Script.setAttribute("name", "memberJS");
+			body.appendChild(Script);
+		})();
+	</script>
+  
+
+</body>
+</html>

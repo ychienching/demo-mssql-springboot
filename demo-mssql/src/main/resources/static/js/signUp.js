@@ -1,12 +1,7 @@
-
+var G_MainRoot = location.origin + "/test-system"; // >> http://localhost:8086 + /test-system
 (function ($) {
-    // var G_MainRoot = "/test-system/";
-    var G_MainRoot = location.origin + "/test-system/";
     $('.spinner-border').hide();
-    // var G_MainRoot = location.pathname;
-    // pathname: "/test-system/test/index2"
 
-    
     $('#signUpBtn').on('click',function(){ //前端畫面更新方式: save > project build > 畫面重整
         //[ Validate ]
         var input = $('.validate-input .input100');
@@ -24,7 +19,7 @@
         $('.spinner-border').show();// spinner-border
 		
 		var data = {
-			username: $("input[name='username']").val(),
+			account: $("input[name='account']").val(),
 			password: $("input[name='password']").val(),
 		};
         console.log('data: ',data);
@@ -32,7 +27,10 @@
         //不導頁，傳接參數
         $.ajax({
             type: "POST",
-            url: G_MainRoot + 'signUp',
+            url: G_MainRoot + '/signUp',
+            // true  = 非同步 > 可同時處理其他程式碼 (default)
+            // false = 同步   > 需等待response才會進行下一步
+            async: false,
             // dataType: "json",
             contentType:"application/json", //傳去格式 default: Content type 'application/x-www-form-urlencoded;charset=UTF-8'
             data: JSON.stringify(data),

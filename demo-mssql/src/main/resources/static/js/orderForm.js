@@ -1,20 +1,16 @@
-var G_MainRoot = location.origin + "/test-system/";
-
+var G_MainRoot = location.origin + "/test-system"; // >> http://localhost:8086 + /test-system
 $(function () {
 	/* 1. Query initial config and setting */
 	//QueryInitSetting();
 	/* 2. Initialize page dom/event/plugin */
 	PageInit();
 	/* 3. Execute functions (none, one or several)  */
-  
-  
 });
 
-
-  
 function PageInit() {
 	var testModal = new bootstrap.Modal(document.getElementById('testModal'), {
-		backdrop: 'static', //設定click Modal以外的地方 觸發怎樣的行為
+		//設定點擊 遮罩範圍(Modal以外的地方) 觸發怎樣的行為   static:保持modal視窗不關閉    false:關閉遮罩  true:啟用遮罩且點擊會關閉Modal
+		backdrop: 'static', 
 		keyboard: true //設定ESC是否能關閉Modal
 	})
 
@@ -24,8 +20,6 @@ function PageInit() {
 	})
 
 	var lastName = window.localStorage.getItem("lastName1");// data from main.js
-	var url = G_MainRoot   + 'test/initOrder';
-	console.log("url: " + url);
 	console.log("lastName: " + lastName);
 
 	var data = {
@@ -35,8 +29,7 @@ function PageInit() {
 	//不導頁，傳接參數
 	$.ajax({
 		type: "POST",
-		url: url,
-		async: true,
+		url: G_MainRoot + '/test/initOrder',
 		// dataType: "json",
 		contentType:"application/json", //傳去data格式化 default: Content type 'application/x-www-form-urlencoded;charset=UTF-8'
 		data: JSON.stringify(data),

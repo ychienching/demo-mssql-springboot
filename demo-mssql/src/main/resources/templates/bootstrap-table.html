@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="css">
+	<!-- boostrapTable -->
+		<link rel="stylesheet" type="text/css" th:href="@{/uiCore/bootstrap-table@1.24.1/dist/bootstrap-table.min.css}">
+		<!-- 進階插件 -->
+		<link rel="stylesheet" type="text/css" th:href="@{/uiCore/bootstrap-table@1.24.1/dist/extensions/sticky-header/bootstrap-table-sticky-header.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/uiCore/bootstrap-table@1.24.1/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.css}">
+	<!--===============================================================================================-->
+</head>
+
+<body th:fragment="js">
+	<!-- boostrapTable -->
+    	<script th:src="@{/uiCore/bootstrap-table@1.24.1/dist/bootstrap-table.min.js}"></script>
+    	<!-- 進階插件 -->
+		<script th:src="@{/uiCore/bootstrap-table@1.24.1/dist/extensions/sticky-header/bootstrap-table-sticky-header.js}"></script>
+    	<script th:src="@{/uiCore/bootstrap-table@1.24.1/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js}"></script>
+</body>
+</html>

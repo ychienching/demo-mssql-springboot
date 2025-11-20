@@ -18,9 +18,17 @@ public class CommonVO implements Serializable {
 
 	private String password;
 
+	private String parea;
+
 	private List<MyTestModel> MyTestModelList = null;
 
 	private List sqlData = null;
+
+	private List abbrList = null;
+
+	private List slotNum = null;
+
+	private List pepList = null;
 
 	public CommonVO() {
 
@@ -54,6 +62,14 @@ public class CommonVO implements Serializable {
 		this.password = password;
 	}
 
+	public String getParea() {
+		return parea;
+	}
+
+	public void setParea(String parea) {
+		this.parea = parea;
+	}
+
 	public List<MyTestModel> getMyTestModelList() {
 		return MyTestModelList;
 	}
@@ -68,6 +84,30 @@ public class CommonVO implements Serializable {
 
 	public void setSqlData(List sqlData) {
 		this.sqlData = sqlData;
+	}
+
+	public List getAbbrList() {
+		return abbrList;
+	}
+
+	public void setAbbrList(List abbrList) {
+		this.abbrList = abbrList;
+	}
+
+	public List getSlotNum() {
+		return slotNum;
+	}
+
+	public void setSlotNum(List slotNum) {
+		this.slotNum = slotNum;
+	}
+
+	public List getPepList() {
+		return pepList;
+	}
+
+	public void setPepList(List pepList) {
+		this.pepList = pepList;
 	}
 
 }
