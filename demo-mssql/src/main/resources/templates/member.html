@@ -17,7 +17,7 @@
 	</span>
 	<br>
 	<br>
-	<div id="toolbar">
+	<div id="toolbar" style="display: none;">
 		<button id="deleteBtn" type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i> Delete Selected</button>
 		<button onClick="showAddModal()" type="button" class="btn btn-success"><i class="bi bi-file-earmark-plus"></i> ADD</button>
 	</div>
@@ -80,14 +80,14 @@ $modal-xl:                          1140px;
 	<!--无论期望的格式如何，最后都包含 tableexport.jquery.plugin（不是tableexport）-->
 	<script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
 <!--===============================================================================================-->
-	<script th:src="@{/js/utility.js}"></script>
+	<script th:src="@{/js/utility.js?v={time}(time=${newTime})}"></script>
 	<!-- <script th:src="@{/js/member.js}"></script> -->
 
 	<script>
 		(function load_js() {
 			$("script[name=memberJS]").remove();
-			// var ver = "1111"; //prod use
-			var ver = new Date().getTime(); //dev use
+			var ver = G_ver; //prod use
+			// var ver = new Date().getTime(); //dev use
 			var url = G_MainRoot + '/js/member.js?v=' + ver;
 			var body = document.getElementsByTagName('body')[0];
 			var Script = document.createElement('script');

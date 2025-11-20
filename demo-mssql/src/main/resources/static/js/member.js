@@ -12,6 +12,15 @@ var $table = $("#memberTable");
 })(jQuery);
 
 function QueryInitSetting() {
+    let hasPermission = getPermission();
+    // $('#toolbar').remove();
+    if(hasPermission){
+        $('#toolbar').show();
+    } else {
+        $('#toolbar').empty();
+    }
+    
+
     let data = {
         Account: 'Jack'
     }
@@ -26,7 +35,7 @@ function QueryInitSetting() {
         success: function(result) {
             console.log('/member/all result: ',result);
             
-            buildTable($table, buildTableColumns(), result.sqlData);
+            buildTable($table, buildTableColumns(hasPermission), result.sqlData);
             // var obj = JSON.parse(rs);
             // console.log('obj: ',obj);
         },
@@ -36,10 +45,10 @@ function QueryInitSetting() {
     });
 }
 
-function buildTableColumns() {
-    let hasPermission = getPermission();
+function buildTableColumns(hasPermission) {
+
 	columns = [
-		{ field: 'state', checkbox: true, width: 10},
+		{ field: 'state', checkbox: true, width: 10, visible: hasPermission},
 		{ field: 'id', title: 'ID', width: 15, sortable: true, visible: false},
         { field: 'account', title: 'Account', width: 30, sortable: true},
         { field: 'member', title: 'Member', width: 15, sortable: true,

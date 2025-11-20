@@ -1,4 +1,5 @@
 var G_MainRoot = location.origin + "/test-system"; // >> http://localhost:8086 + /test-system
+var G_ver = '1120'
 
 function buildTable($table, columns, dataList) {
 	// text-nowrap搭配style="table-layout: fixed;" 才能修改欄位的寬度限制

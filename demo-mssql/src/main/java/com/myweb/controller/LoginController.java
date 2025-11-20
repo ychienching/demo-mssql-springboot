@@ -1,5 +1,7 @@
 package com.myweb.controller;
 
+import java.util.Date;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,7 +38,7 @@ public class LoginController {
 		// TODO UAC
 		// sys_setting
 		model.addAttribute("path", "test-system");
-		model.addAttribute("test", "just123");
+		model.addAttribute("newTime", new Date().getTime());
 		model.addAttribute("defaultGoPage", "login");
 		return;
 	}
