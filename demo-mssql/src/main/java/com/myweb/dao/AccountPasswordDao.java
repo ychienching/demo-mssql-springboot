@@ -3,21 +3,32 @@ package com.myweb.dao;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.myweb.model.AccountPassword;
+import com.myweb.vo.AccountVO;
 
-//Long：這是實體類別主鍵的類型。這裡表示 AccountPassword 類的 @Id 欄位是 Long 類型
 @Repository
-public interface AccountPasswordDao extends JpaRepository<AccountPassword, Long> {
+public interface AccountPasswordDao extends JpaRepository<AccountPassword, String> {
 
 	// [method name] auto mapping table column, can no write implements
 	List<AccountPassword> findByAccount(String account);
 
-//	void customSql(MyTestModel myTestModel);
+	@Modifying
+	@Transactional
+	@Query("delete from AccountPassword ap where ap.account in (?1)")
+	void deleteBatch(List<String> accountList);
 
-//	void saveBySql(MyTestModel myTestModel);
+	@Modifying
+	@Transactional
+	@Query("delete from AccountPassword ap where ap.account in (?1)")
+	void deleteAccountPasswordByAccountIn(List<String> accountList);
 
-//	@Query("SELECT * FROM MY_TEST e WHERE e.id = :id")
-//	List<MyTestModel> findBySearchId(@Param("id")long id);
+	@Query("SELECT new com.myweb.vo.AccountVO( " + "ap.account, " + "ap.password, " + "p.member, " + "p.report, "
+			+ "p.test) " + "FROM AccountPassword ap " + "LEFT JOIN ap.permissions p")
+	List<AccountVO> findAllAccount();
+
 }

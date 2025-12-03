@@ -76,7 +76,7 @@ var G_MainRoot = location.origin + "/test-system"; // >> http://localhost:8086 +
 		// window.sessionStorage.setItem("username", username);
 		
 
-		// http://localhost:8086/demo-maven/qqqq/indexx + /query
+		// http://localhost:8086/test-system/qqqq/indexx + /query
 		// var url = location.href + '/go/order';
 
         // http://localhost:8086 + /demo-maven + /test/go/order...
@@ -87,7 +87,7 @@ var G_MainRoot = location.origin + "/test-system"; // >> http://localhost:8086 +
 		location.href = url; //type GET
 		
         //不導頁，傳接參數
-        // url = "http://localhost:8086/demo-maven/products"
+        // url = "http://localhost:8086/test-system/products"
         // $.ajax({
 	    //     type: "POST",
 	    //     url: url,

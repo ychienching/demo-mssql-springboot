@@ -44,10 +44,10 @@ public class LoginController {
 	}
 
 	@GetMapping("/*") // 呼應3種url
-	// http://localhost:8081/demo-sqlserver/
-	// http://localhost:8081/demo-sqlserver/*
-	// http://localhost:8081/demo-sqlserver/*/ 有相對路徑問題，html之link href會吃不到
-	// http://localhost:8081/demo-sqlserver/*/css/main.css (error)
+	// http://localhost:8086/test-system/
+	// http://localhost:8086/test-system/*
+	// http://localhost:8086/test-system/*/ 有相對路徑問題，html之link href會吃不到
+	// http://localhost:8086/test-system/*/css/main.css (error)
 	public String otherUrl(ReqData data, Model model) {
 		String className = new Object() {
 		}.getClass().getName();
@@ -70,7 +70,7 @@ public class LoginController {
 
 	@PostMapping(path = "/login")
 	@ResponseBody
-	// http://localhost:8081/demo-sqlserver/login
+	// http://localhost:8086/test-system/login
 	public ResultData login(@RequestBody AccountPassword accountPassword) throws Exception {
 
 		ResultData result = new ResultData();
@@ -95,7 +95,7 @@ public class LoginController {
 
 	@PostMapping(path = "/signUp")
 	@ResponseBody
-	// http://localhost:8081/demo-sqlserver/signUp
+	// http://localhost:8086/test-system/signUp
 	public ResultData signUp(@RequestBody AccountPassword accountUser) throws Exception {
 
 		ResultData result = new ResultData();
@@ -118,7 +118,7 @@ public class LoginController {
 	}
 
 	@GetMapping("/index")
-	// http://localhost:8081/demo-sqlserver/index
+	// http://localhost:8086/test-system/index
 	public String goIndex(@ModelAttribute("initSetting") ReqData reqData) {
 		String className = new Object() {
 		}.getClass().getName();

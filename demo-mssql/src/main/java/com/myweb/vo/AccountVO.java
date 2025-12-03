@@ -1,40 +1,28 @@
-package com.myweb.model;
+package com.myweb.vo;
 
-import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "ACCOUNT_PERMISSIONS")
-public class AccountPermissions implements Serializable {
+public class AccountVO {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5846746506914485820L;
 
-	@Id
-	@Column(name = "account")
 	private String account;
 
-	@Column(name = "member")
+	private String password;
+
 	private int member;
 
-	@Column(name = "report")
 	private int report;
 
-	@Column(name = "test")
 	private int test;
 
-	public AccountPermissions() {
-
+	public AccountVO() {
 	}
 
-	public AccountPermissions(String account, int member, int report, int test) {
+	public AccountVO(String account, String password, int member, int report, int test) {
 		this.account = account;
+		this.password = password;
 		this.member = member;
 		this.report = report;
 		this.test = test;
@@ -46,6 +34,14 @@ public class AccountPermissions implements Serializable {
 
 	public void setAccount(String account) {
 		this.account = account;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public int getMember() {

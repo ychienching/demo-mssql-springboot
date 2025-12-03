@@ -25,17 +25,20 @@ function QueryInitSetting() {
         Account: 'Jack'
     }
 
+    let event = '/member/all';
+    
     $.ajax({
         type: 'POST',
-        url: G_MainRoot + '/member/all',
+        url: G_MainRoot + event,
         // dataType: 'json',
         contentType:'application/json', //傳去格式 default: Content type 'application/x-www-form-urlencoded;charset=UTF-8'
         data: JSON.stringify(data),
         async: false,
         success: function(result) {
-            console.log('/member/all result: ',result);
+            console.log(event + ' result: ', rs);
             
-            buildTable($table, buildTableColumns(hasPermission), result.sqlData);
+            // buildTable($table, buildTableColumns(hasPermission), result.sqlData);
+            buildAccountTable($table, buildTableColumns(hasPermission), result.sqlData);
             // var obj = JSON.parse(rs);
             // console.log('obj: ',obj);
         },
@@ -45,11 +48,47 @@ function QueryInitSetting() {
     });
 }
 
+function buildAccountTable($table, columns, dataList) {
+	// text-nowrap搭配style="table-layout: fixed;" 才能修改欄位的寬度限制
+	var tableClass = 'table table-hover table-bordered table-success text-nowrap';
+
+	$table.bootstrapTable('destroy').bootstrapTable({ //Cassette Information   cassette
+		data: dataList,
+		columns: columns,
+		classes: tableClass,
+		uniqueId: 'account',
+		cache: false,
+		// minWidth: 20,
+		// maxWidth: 40,
+		// width: 1000,
+		headerStyle: {css: { 'color': 'blue' ,'text-align':'center'}},
+		sortable: true,
+		search: true,
+		// searchAlign: 'left',
+		// showColumns: true,
+		// showColumnsToggleAll: true,
+		// showPaginationSwitch: true,
+		// clickToSelect: true,
+		searchHighlight: true,
+		stickyHeader: true, //往下scroll時，固定Header顯示
+		// showRefresh: true,
+		pagination: true,
+		pageSize: 5,
+		pageList: [5, 10, 20],
+		toolbar: '#toolbar',
+		locale: 'en-US',
+		showExport: true,     //是否顯示匯出
+		exportDataType: 'basic',	//匯出資料型別，支援：'基本'，'全部'，'選中'
+		exportTypes:['json', 'csv', 'excel', 'xlsx'], //, 'png'
+	});
+
+}
+
 function buildTableColumns(hasPermission) {
 
 	columns = [
 		{ field: 'state', checkbox: true, width: 10, visible: hasPermission},
-		{ field: 'id', title: 'ID', width: 15, sortable: true, visible: false},
+		// { field: 'id', title: 'ID', width: 15, sortable: true, visible: false},
         { field: 'account', title: 'Account', width: 30, sortable: true},
         { field: 'member', title: 'Member', width: 15, sortable: true,
             formatter: function(value, row, index){
@@ -92,7 +131,7 @@ function buildTableColumns(hasPermission) {
             formatter: function(value, row, index){
                 // console.log('row: ',row)
                 var html = '';
-                html += '<button class="btn btn-primary" onClick="showEditModal('+row.id+')">Edit</button>'
+                html += '<button class="btn btn-primary" onClick="showEditModal(\''+row.account+'\')">Edit</button>'
                 // html += '<button class="btn btn-danger" >Delete</button>'
                 return html;
             }
@@ -105,15 +144,17 @@ function getPermission(){
     let hasPermission = false
     // 檢查權限
 	let account = getLoginAccountByCookie()
-	$.ajax({
+	let event = '/member/getPermission';
+    
+    $.ajax({
         type: 'POST',
-        url: G_MainRoot + '/member/getPermission',
+        url: G_MainRoot + event,
         // dataType: 'json',
         contentType:'application/json', //傳去格式 default: Content type 'application/x-www-form-urlencoded;charset=UTF-8'
         data: account,
         async: false,
         success: function(result) {
-            console.log('/member/getPermission result: ', result);
+            console.log(event + ' result: ', rs);
             hasPermission = result;
             // var obj = JSON.parse(rs);
             // console.log('obj: ',obj);
@@ -138,8 +179,10 @@ function showAddModal() {
 
     $('#editModal input[name=id]').val('');
     $('#editModal input[name=account]').val('');
+    $('#editModal input[name=password]').val('');
     // $('#editModal input[name=account]').removeAttr("readonly");
     $('#editModal input[name=account]').prop("readonly", false); // Remove readonly
+    $('#editModal input[name=password]').prop("readonly", false); // Remove readonly
 
     //Multiple select init選項
     $('#mySelect').each(function() {
@@ -150,20 +193,22 @@ function showAddModal() {
     $('.select2-search__field').css('width','200px');
 }
 
-function showEditModal(id) {
+function showEditModal(account) {
     $('#editModal').modal('show');
     $('.modal-header').text('Edit')
     $('#editModal input[name=account]').prop("readonly", true); // Set readonly
+    $('#editModal input[name=password]').prop("readonly", false); // Remove readonly
     
     //取得選取的編輯資料
-    var rowData = $table.bootstrapTable('getRowByUniqueId', id);
+    var rowData = $table.bootstrapTable('getRowByUniqueId', account);
     // console.log('rowData: ', rowData);
     
-    $('#editModal input[name=id]').val(rowData.id);
+    // $('#editModal input[name=id]').val(rowData.id);
     $('#editModal input[name=account]').val(rowData.account);
+    $('#editModal input[name=password]').val(rowData.password);
     
     let selected = []
-    let invalidKeys = ['id','account','state']
+    let invalidKeys = ['id','account','state'] //不是權限的key
     let keys = Object.keys(rowData);
 
     $.each(keys, function(index, key) {
@@ -187,6 +232,7 @@ function saveEdit() {
     let saveData = {
         id: $('#editModal input[name=id]').val(),
         account: $('#editModal input[name=account]').val(),
+        password: $('#editModal input[name=password]').val(),
     }
 
     var test1 = $('#editModal select[name=states]').val();
@@ -195,7 +241,7 @@ function saveEdit() {
     console.log('test1: ', test1)
     console.log('test2: ', test2)
 
-    let selected = $('#mySelect').val()
+    let selected = $('#mySelect').val() //多選有選擇的項目  代表要啟用
     $.each(selected, function(index, value) {
         saveData[value] = 1;// 1啟用 0停用
         // saveData.push(obj)
@@ -204,15 +250,17 @@ function saveEdit() {
 
     console.log('saveData+: ', saveData)
 
+    let event = '/member/save';
+    
     $.ajax({
         type: 'POST',
-        url: G_MainRoot + '/member/saveMember',
+        url: G_MainRoot + event,
         // dataType: 'json',
         contentType:'application/json', //傳去格式 default: Content type 'application/x-www-form-urlencoded;charset=UTF-8'
         data: JSON.stringify(saveData),
         async: false,
         success: function(result) {
-            console.log('/member/saveMember result: ', result);
+            console.log(event + ' result: ', rs);
             QueryInitSetting()
             $('#editModal').modal('hide');
             // var obj = JSON.parse(rs);
@@ -242,8 +290,8 @@ function PageInit() {
         //JSON寫法
 		data: [
 			{
-			"id": 'member',
-			"text": "Member",
+			"id": 'member',//實際取用value
+			"text": "Member",//顯示用
             // "selected": true,
 			},
 			{
@@ -267,7 +315,7 @@ function PageInit() {
         var selectedId = [];
         $.each(selectedRows, function(index, value) {
             selectedItemsText += value.account + ', '; // Access the 'name' property of the selected row object
-            selectedId.push(value.id)
+            selectedId.push(value.account)
             // selectedId.push(String(value.id))
         });
         selectedItemsText = selectedItemsText.slice(0, -2)
@@ -298,13 +346,13 @@ function DeleteData(selectedId) {
     console.log('DeleteData: ', selectedId);
     let array = []
     $.each(selectedId, function(index, value) {
-        let obj = {id: value}
+        let obj = {account: value}
         array.push(obj)
     });
     console.log('array: ', array);
 
-    let event = '/member/deleteMember';
-    // ajax
+    let event = '/member/delete';
+    
     $.ajax({
         type: 'POST',
         url: G_MainRoot + event,
@@ -324,7 +372,7 @@ function DeleteData(selectedId) {
         error: function(xhr, status, error) {
             console.log(event + 'error: ',error);
         },
-    });
+    });// ajax
 
 }
 

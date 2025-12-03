@@ -1,5 +1,7 @@
 package com.myweb.service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -13,6 +15,7 @@ import com.myweb.dao.AccountPermissionsDao;
 import com.myweb.model.AccountPassword;
 import com.myweb.model.AccountPermissions;
 import com.myweb.repository.TestSqlRepository;
+import com.myweb.vo.AccountVO;
 import com.myweb.vo.ResultData;
 
 import tool.ToolUtility;
@@ -21,7 +24,7 @@ import tool.ToolUtility;
 public class MemberService {
 
 	@Autowired
-	private AccountPasswordDao accountUserDao;
+	private AccountPasswordDao accountPasswordDao;
 
 	@Autowired
 	private AccountPermissionsDao accountPermissionsDao;
@@ -40,7 +43,8 @@ public class MemberService {
 		}.getClass().getEnclosingMethod().getName();
 
 		ToolUtility.printReqData(1, className, methodName, "");
-		List<AccountPassword> accountPasswordList = accountUserDao.findAll(Sort.by(Sort.Direction.ASC, "id"));
+		List<AccountPassword> accountPasswordList = accountPasswordDao
+				.findAll(Sort.by(Sort.Direction.ASC, "id"));
 		System.out.println("accountUserList size: " + accountPasswordList.size());
 		if (accountPasswordList.size() == 0) {
 			result.setResult("No Data");
@@ -58,16 +62,38 @@ public class MemberService {
 		}.getClass().getName();
 		String methodName = new Object() {
 		}.getClass().getEnclosingMethod().getName();
-
 		ToolUtility.printReqData(1, className, methodName, "");
-		List<AccountPermissions> accountPermissionsList = accountPermissionsDao
-				.findAll(Sort.by(Sort.Direction.ASC, "id"));
-		System.out.println("accountUserList size: " + accountPermissionsList.size());
+
+		List<AccountVO> accountList = accountPasswordDao.findAllAccount();
+//		List<AccountPermissions> accountPermissionsList = accountPermissionsDao
+//				.findAll(Sort.by(Sort.Direction.ASC, "id"));
+
+		List<AccountVO> accountVOList = new ArrayList<AccountVO>();
+		List<AccountPassword> accountPasswordList = accountPasswordDao.findAll();
+		List<AccountPermissions> accountPermissionsList = accountPermissionsDao.findAll();
+
+		for (Iterator iterator = accountPermissionsList.iterator(); iterator.hasNext();) {
+			AccountPermissions accountPermissions = (AccountPermissions) iterator.next();
+			AccountVO accountVO = new AccountVO();
+			accountVO.setAccount(accountPermissions.getAccount());
+			accountVO.setMember(accountPermissions.getMember());
+			accountVO.setReport(accountPermissions.getReport());
+			accountVO.setTest(accountPermissions.getTest());
+			for (Iterator iterator2 = accountPasswordList.iterator(); iterator2.hasNext();) {
+				AccountPassword accountPassword = (AccountPassword) iterator2.next();
+				if (accountPassword.getAccount().equals(accountVO.getAccount())) {
+					accountVO.setPassword(accountPassword.getPassword());
+				}
+			}
+			accountVOList.add(accountVO);
+		}
+
 		if (accountPermissionsList.size() == 0) {
 			result.setResult("No Data");
 		} else {
 			result.setResult("Success");
-			result.setSqlData(accountPermissionsList);
+			result.setSqlData(accountList);
+//			result.setSqlData(accountVOList);
 		}
 		ToolUtility.printReqData(0, className, methodName, "");
 		return result;
@@ -90,7 +116,7 @@ public class MemberService {
 		return hasPermission;
 	}
 
-	public ResultData saveMember(AccountPermissions ap) {
+	public ResultData saveMember(AccountVO accountVO) {
 		ResultData result = new ResultData();
 		String className = new Object() {
 		}.getClass().getName();
@@ -98,7 +124,18 @@ public class MemberService {
 		}.getClass().getEnclosingMethod().getName();
 
 		ToolUtility.printReqData(1, className, methodName, "");
-		accountPermissionsDao.save(ap);
+//		AccountPermissions aPermissions = new AccountPermissions(accountVO.getAccount(), accountVO.getMember(),
+//				accountVO.getReport(), accountVO.getTest());
+//		accountPermissionsDao.save(aPermissions);
+//		AccountPassword aPassword = new AccountPassword(accountVO.getAccount(), accountVO.getPassword());
+//		accountPasswordDao.save(aPassword);
+//		result.setResult("Success");
+
+		AccountPermissions aPermissions = new AccountPermissions(accountVO.getAccount(), accountVO.getMember(),
+				accountVO.getReport(), accountVO.getTest());
+		AccountPassword aPassword = new AccountPassword(accountVO.getAccount(), accountVO.getPassword());
+		aPassword.setPermissions(aPermissions);
+		accountPasswordDao.save(aPassword);
 		result.setResult("Success");
 
 		ToolUtility.printReqData(0, className, methodName, "");
@@ -106,7 +143,7 @@ public class MemberService {
 	}
 
 //	public ResultData deleteMember(Iterable<? extends Long> idList) {
-	public ResultData deleteMember(List<Long> idList) {
+	public ResultData deleteMember(List<String> accountList) {
 		ResultData result = new ResultData();
 		String className = new Object() {
 		}.getClass().getName();
@@ -114,7 +151,24 @@ public class MemberService {
 		}.getClass().getEnclosingMethod().getName();
 
 		ToolUtility.printReqData(1, className, methodName, "");
-		accountPermissionsDao.deleteAllById(idList);
+
+		List<AccountPassword> accountPasswordList = new ArrayList<AccountPassword>();
+		List<AccountPermissions> accountPermissionsList = new ArrayList<AccountPermissions>();
+		// test id delete
+		for (String account : accountList) {
+			AccountPassword aPassword = new AccountPassword();
+			aPassword.setAccount(account);
+//			aPassword.setId(8L);
+			accountPasswordList.add(aPassword);
+			AccountPermissions aPermissions = new AccountPermissions();
+			aPermissions.setAccount(account);
+//			aPermissions.setId(20L);
+			accountPermissionsList.add(aPermissions);
+		}
+		accountPasswordDao.deleteAccountPasswordByAccountIn(accountList);
+		accountPermissionsDao.deleteBatch(accountList);
+//		accountPasswordDao.deleteByAccount(accountPasswordList);
+//		accountPermissionsDao.deleteByAccount(accountPermissionsList);
 		result.setResult("Success");
 		ToolUtility.printReqData(0, className, methodName, "");
 		return result;

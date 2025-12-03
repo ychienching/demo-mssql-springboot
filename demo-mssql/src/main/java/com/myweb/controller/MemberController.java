@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.myweb.model.AccountPermissions;
 import com.myweb.service.MemberService;
+import com.myweb.vo.AccountVO;
 import com.myweb.vo.ReqData;
 import com.myweb.vo.ResultData;
 
@@ -86,18 +86,18 @@ public class MemberController {
 		return hasPermission;
 	}
 
-	@PostMapping(path = "/saveMember")
+	@PostMapping(path = "/save")
 	@ResponseBody
-	public ResultData saveMember(@RequestBody AccountPermissions ap) throws Exception {
+	public ResultData save(@RequestBody AccountVO accountVO) throws Exception {
 		ResultData result = new ResultData();
 		try {
 			String className = new Object() {
 			}.getClass().getName();
 			String methodName = new Object() {
 			}.getClass().getEnclosingMethod().getName();
-			ToolUtility.printReqData(1, className, methodName, ap.toString());
+			ToolUtility.printReqData(1, className, methodName, accountVO.toString());
 
-			result = memberService.saveMember(ap);
+			result = memberService.saveMember(accountVO);
 
 			ToolUtility.printReqData(0, className, methodName, "");
 
@@ -106,6 +106,26 @@ public class MemberController {
 			e.printStackTrace();
 		}
 
+		return result;
+	}
+
+	@PostMapping(path = "/delete")
+	@ResponseBody
+	public ResultData delete(@RequestBody List<String> accountList) {
+		ResultData result = new ResultData();
+		try {
+			String className = new Object() {
+			}.getClass().getName();
+			String methodName = new Object() {
+			}.getClass().getEnclosingMethod().getName();
+			ToolUtility.printReqData(1, className, methodName, accountList.toString());
+
+			result = memberService.deleteMember(accountList);
+			ToolUtility.printReqData(0, className, methodName, result.getResult());
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return result;
 	}
 
@@ -120,9 +140,7 @@ public class MemberController {
 			}.getClass().getEnclosingMethod().getName();
 			ToolUtility.printReqData(1, className, methodName, idList.toString());
 
-//			MyTestModel myTestModel = new MyTestModel();
-//			myTestModel.setId(10L);
-			result = memberService.deleteMember(idList);
+//			result = memberService.deleteMember(idList);
 			ToolUtility.printReqData(0, className, methodName, result.getResult());
 		} catch (SecurityException e) {
 			// TODO Auto-generated catch block
@@ -132,7 +150,7 @@ public class MemberController {
 	}
 
 	@GetMapping("/go/member")
-	// location.href = 'http://localhost:8081/demo-maven/test/go/order?lastName=...'
+	// location.href = 'http://localhost:8086/test-system/test/go/order?lastName=...'
 	public String goOrderForm(@ModelAttribute("initData") ReqData initPojo,
 			@RequestParam(value = "lastName", defaultValue = "defaultTest") String lastName) {
 		String className = new Object() {

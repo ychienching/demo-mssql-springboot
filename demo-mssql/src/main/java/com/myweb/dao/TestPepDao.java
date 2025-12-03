@@ -14,6 +14,8 @@ public interface TestPepDao extends JpaRepository<TestPep, Long> {
 	// method name auto mapping table column, can no write implements
 	List<TestPep> findByPep(String ttt);
 
+//	List<TestPep> deleteByPep(String ttt);
+
 //	void customSql(MyTestModel myTestModel);
 
 //	void saveBySql(MyTestModel myTestModel);

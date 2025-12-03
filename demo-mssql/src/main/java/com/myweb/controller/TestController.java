@@ -65,7 +65,7 @@ public class TestController {
 
 	@PostMapping(path = "/initOrder")
 	@ResponseBody
-	// ajax http://localhost:8081/demo-maven/test/initOrder
+	// ajax http://localhost:8086/test-system/test/initOrder
 	public CommonVO initOrder(@RequestBody CommonVO vo) {
 
 		List<MyTestModel> myTestModelList = new ArrayList<MyTestModel>();
@@ -93,7 +93,7 @@ public class TestController {
 
 	@PostMapping(path = "/initSampling")
 	@ResponseBody
-	// ajax http://localhost:8081/demo-maven/test/initOrder
+	// ajax http://localhost:8086/test-system/test/initOrder
 	public CommonVO initSampling(@RequestBody CommonVO vo) {
 
 		List<MyTestModel> myTestModelList = new ArrayList<MyTestModel>();
@@ -122,14 +122,14 @@ public class TestController {
 	}
 
 	@GetMapping("/index2")
-	// location.href = 'http://localhost:8081/demo-maven/test/index2'
+	// location.href = 'http://localhost:8086/test-system/test/index2'
 	public String helloIndex2() {
 		System.out.println("++index2");
 		return "index2";
 	}
 
 	@GetMapping("/go/order")
-	// location.href = 'http://localhost:8081/demo-maven/test/go/order?lastName=...'
+	// location.href = 'http://localhost:8086/test-system/test/go/order?lastName=...'
 	public String goOrderForm(@ModelAttribute("initData") ReqData initPojo,
 			@RequestParam(value = "lastName", defaultValue = "defaultTest") String lastName) {
 		String className = new Object() {
@@ -144,7 +144,7 @@ public class TestController {
 	}
 
 	@GetMapping("/go/test")
-	// location.href = 'http://localhost:8081/demo-maven/test/go/order?lastName=...'
+	// location.href = 'http://localhost:8086/test-system/test/go/order?lastName=...'
 	public String goTest(@ModelAttribute("initData") ReqData initPojo,
 			@RequestParam(value = "lastName", defaultValue = "defaultTest") String lastName) {
 		System.out.println("method:orderFormTest");
@@ -156,7 +156,7 @@ public class TestController {
 
 	@GetMapping("/go/sampling")
 	// location.href =
-	// 'http://localhost:8081/demo-maven/test/go/sampling?lastName=...'
+	// 'http://localhost:8086/test-system/test/go/sampling?lastName=...'
 	public String samplingTest(@RequestParam(value = "lastName", defaultValue = "defaultTest") String lastName) {
 		System.out.println("/go/sampling lastName: " + lastName);
 		// cstWipService.getWipByLastName("3TestLastName");
@@ -164,7 +164,7 @@ public class TestController {
 	}
 
 	@GetMapping(path = { "/error" })
-	// location.href = 'http://localhost:8081/demo-maven/test/t'
+	// location.href = 'http://localhost:8086/test-system/test/t'
 	public String test() {
 		try {
 			System.out.println("+++++ Error 404 +++++");
@@ -177,7 +177,7 @@ public class TestController {
 
 	@PostMapping(path = "/query")
 	@ResponseBody
-	// ajax http://localhost:8081/demo-maven/test/query
+	// ajax http://localhost:8086/test-system/test/query
 	public List query1(@ModelAttribute("initData") ReqData initPojo, @RequestBody CommonVO vo) {
 
 		List<MyTestModel> myTestModelList = new ArrayList<MyTestModel>();
@@ -249,7 +249,7 @@ public class TestController {
 
 	@PostMapping(path = "/save", params = { "event=SAVE_MY_TEST" })
 	@ResponseBody
-	// http://localhost:8081/demo-maven/test/save
+	// http://localhost:8086/test-system/test/save
 	public String test2(@RequestParam(value = "event", defaultValue = "World") String event) throws Exception {
 
 		try {
@@ -278,7 +278,7 @@ public class TestController {
 
 	@PostMapping(path = "/delete")
 	@ResponseBody
-	// http://localhost:8081/demo-maven/test/detele
+	// http://localhost:8086/test-system/test/detele
 	public String test3() {
 		try {
 			String className = new Object() {
