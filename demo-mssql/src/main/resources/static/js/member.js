@@ -34,11 +34,11 @@ function QueryInitSetting() {
         contentType:'application/json', //傳去格式 default: Content type 'application/x-www-form-urlencoded;charset=UTF-8'
         data: JSON.stringify(data),
         async: false,
-        success: function(result) {
+        success: function(rs) {
             console.log(event + ' result: ', rs);
             
-            // buildTable($table, buildTableColumns(hasPermission), result.sqlData);
-            buildAccountTable($table, buildTableColumns(hasPermission), result.sqlData);
+            // buildTable($table, buildTableColumns(hasPermission), rs.sqlData);
+            buildAccountTable($table, buildTableColumns(hasPermission), rs.sqlData);
             // var obj = JSON.parse(rs);
             // console.log('obj: ',obj);
         },
@@ -153,9 +153,9 @@ function getPermission(){
         contentType:'application/json', //傳去格式 default: Content type 'application/x-www-form-urlencoded;charset=UTF-8'
         data: account,
         async: false,
-        success: function(result) {
+        success: function(rs) {
             console.log(event + ' result: ', rs);
-            hasPermission = result;
+            hasPermission = rs;
             // var obj = JSON.parse(rs);
             // console.log('obj: ',obj);
         },
@@ -259,7 +259,7 @@ function saveEdit() {
         contentType:'application/json', //傳去格式 default: Content type 'application/x-www-form-urlencoded;charset=UTF-8'
         data: JSON.stringify(saveData),
         async: false,
-        success: function(result) {
+        success: function(rs) {
             console.log(event + ' result: ', rs);
             QueryInitSetting()
             $('#editModal').modal('hide');
